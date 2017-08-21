@@ -1,0 +1,17 @@
+label {
+	float: left;
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+.alert {
+	height: 5px;
+	text-align: center;
+	vertical-align: middle;
+	padding-bottom: 35px;
+}
+.ng-valid[required], .ng-valid.required {
+	border-left: 5px solid #00b530;
+}
+.ng-invalid[required], .ng-invalid.required {
+	border-left: 5px solid red;
+}

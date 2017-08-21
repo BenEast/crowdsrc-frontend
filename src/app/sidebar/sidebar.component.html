@@ -1,0 +1,32 @@
+<div class="pull-left visible sidebar">
+  <div class="inner-wrapper" *ngIf="isAuthenticated && currentUser">
+    <div class="row center-block user-info">
+      <!-- Display user image in circle -->
+      <div class="center-block image-wrapper" (click)="routeTo('/profiles/'+currentUser.id)">
+        image
+      </div>
+      <h4 class="text-center username" (click)="routeTo('/profiles/'+currentUser.id)">{{currentUser.username}}</h4>
+    </div>
+    <div class="row center-block content-wrapper">
+      <div class="text-center col side-list" (click)="routeTo('/profiles/'+currentUser.id)">Your Profile</div>
+      <div class="text-center col side-list" (click)="logout()">Logout</div>
+      <div class="center-block col spacer"></div>
+      <div class="text-center col side-list" (click)="routeTo('/about')">About Crowdsrc</div>
+      <div class="text-center col side-list" (click)="routeTo('/contact')">Contact Us</div>
+    </div>
+  </div>
+  <div class="inner-wrapper" *ngIf="!isAuthenticated || !currentUser">
+    <!-- Login Form -->
+    <div class="login" *ngIf="!showRegistrationForm">
+      <app-login-form></app-login-form>
+      <p class="text-center">or</p>
+      <p class="text-center" (click)="showRegistrationForm = !showRegistrationForm">Register</p>
+    </div>
+    <!-- Registration Form -->
+    <div class="register" *ngIf="showRegistrationForm">
+      <app-registration-form></app-registration-form>
+      <p class="text-center">or</p>
+      <p class="text-center" (click)="showRegistrationForm = !showRegistrationForm">Login</p>
+    </div>
+  </div>
+</div>

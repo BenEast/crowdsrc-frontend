@@ -1,0 +1,12 @@
+@import url("../forms.css");
+
+.project-form {
+    padding: 15px;
+    height: 450px;
+}
+.project-form:hover {
+    background-color: white;
+}
+#description {
+    resize: none;
+}

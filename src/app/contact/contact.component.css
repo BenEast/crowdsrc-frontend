@@ -1,0 +1,22 @@
+.page-content {
+    min-height: 380px;
+    padding: 20px 2%;
+}
+.greeting-wrapper {
+    width: 100%;
+    margin-bottom: 20px;
+}
+.form-group {
+    width: 95%;
+}
+.text-area {
+    width: 100%;
+}
+.btn-primary {
+    max-width: 150px;
+    width: 5%;
+    min-width: 100px;
+}
+.success-wrapper {
+    margin-top: 15%;
+}

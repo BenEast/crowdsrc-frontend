@@ -1,0 +1,17 @@
+<div class="registration-block pull-right">
+  <h3 class="text-center register-title">Register</h3>
+  <form #userForm="ngForm">
+    <div class="form-group">
+      <label for="enterUsername">Username:</label>
+      <input type="text" class="form-control" id="registrationUsername" aria-describedby="registrationUsername" placeholder="Enter a username"
+        [(ngModel)]="model.username" name="registrationUsername" #registrationUsername="ngModel" required>
+      <label for="enterEmail">Email:</label>
+      <input type="text" class="form-control" id="email" aria-describedby="enterEmail" placeholder="Enter an email" [(ngModel)]="model.email"
+        name="email" #email="ngModel" required>
+      <label for="enterPassword">Password:</label>
+      <input type="password" class="form-control" id="registrationPassword" aria-describedby="registrationPassword" placeholder="Enter a password"
+        [(ngModel)]="model.password" name="registrationPassword" #registrationPassword="ngModel" required>
+    </div>
+  </form>
+  <button type="submit" class="btn btn-primary center-block register-button" [disabled]="!userForm.form.valid" (click)="submitUser()">Register</button>
+</div>

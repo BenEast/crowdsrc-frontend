@@ -1,0 +1,24 @@
+<div class="visible top center-block" (click)="visibility=!visibility">
+	<h4 class="text-center">Click to post a new idea</h4>
+</div>
+<div class="visible center-block project-form" *ngIf="visibility">
+	<h3 class="text-center">Create a Project</h3>
+	<form #projectForm="ngForm">
+		<div class="form-group">
+			<label for="enterTitle">Title:</label>
+			<input type="text" class="form-control" id="title" aria-describedby="enterTitle" placeholder="Enter a title" [(ngModel)]="model.title"
+			 name="title" #title="ngModel" required>
+			<label for="selectCategory">Category:</label>
+			<textarea class="form-control" id="category" rows="1" [(ngModel)]="model.category" name="category" #category="ngModel" required placeholder="Enter a category"></textarea>
+			<label for="enterDescription">Description:</label>
+			<textarea class="form-control" id="description" rows="5" placeholder="Enter a description" [(ngModel)]="model.description"
+			 name="description" #description="ngModel" required></textarea>
+			<label for="enterWebsite">Website (optional):</label>
+			<input type="text" class="form-control" id="website" aria-describedby="enterWebsite" placeholder="Enter a website" [(ngModel)]="model.website"
+			 name="website">
+		</div>
+	</form>
+	<button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="projectForm.reset(); visibility = !visibility;">Cancel</button>
+	<button type="submit" class="btn btn-primary" [disabled]="!projectForm.form.valid" (click)="model.user = currentUser; submitProject();"
+	 data-dismiss="modal">Submit</button>
+</div>

@@ -1,0 +1,118 @@
+.project-header {
+    height: auto;
+    padding: 90px 10px 10px 10px;
+}
+.project-body {
+    height: auto;
+}
+.col {
+    width: 100%;
+    margin: auto;
+}
+.content-wrapper {
+    width: 95%;
+    padding: 10px;
+}
+.category {
+    padding-top: 10px;
+}
+.comment-wrapper {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #e0e0e0;
+}
+.user-body {
+    align-items: stretch;
+    min-width: 150px;
+}
+.comment-body {
+    height: 100%;
+    padding: 10px;
+    width: 95%;
+}
+.username {
+    color: orangered;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+a:hover {
+    color: orangered;
+}
+.delete-wrapper {
+    font-size: 15px;
+    height: 90%;
+}
+.comment-form {
+    display: inline-block;
+    width: 100%;
+}
+.form-content {
+    resize: none;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+.submit-wrapper {
+    padding-top: 20px;
+}
+.btn-secondary {
+    color: black;
+}
+.delete-comment-button:hover {
+    color: orangered;
+}
+
+.message {
+    width: 95%;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.support-button {
+    background-color: orangered;
+    border: 1px solid orangered;
+}
+.support-button:active, .support-button:focus {
+    background-color: orangered;
+    border: 1px solid darkorange;
+    outline: 1px solid darkorange;
+}
+.message-user-wrapper {
+    padding-bottom: 5px;
+}
+.message-create-date {
+    line-height: 0.8em;
+    padding: 5px 10px;
+}
+.user-image {
+    width: 70px;
+    height: 70px;
+    border: 1px solid black;
+}
+.team-username {
+    padding-top: 15px;
+    line-height: 1em;
+    color: orangered;
+    padding-left: 10px;
+}
+.team-username p {
+    display: inline-block;
+}
+
+.task {
+    width: 95%;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.task-upper {
+    max-width: 100%;
+    margin: 10px auto;
+    color: orangered;
+}
+.task-skills {
+    padding-bottom: 10px;
+}
+.task-description {
+    max-width: 100%;
+    margin-bottom: 0;
+}

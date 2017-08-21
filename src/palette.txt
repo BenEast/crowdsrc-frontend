@@ -1,0 +1,12 @@
+############ CROWDSRC COLOR PALETTE ############
+
+crowdsrc green: #00b530		rgb(0, 181, 48)
+black
+white
+
+-----------------------------------------------------------------------------
+can be used to add texture and depth to text, backgrounds, and illustrations:
+-----------------------------------------------------------------------------
+dark green: #2f3f2f		rgb(47, 63, 47)
+medium gray: #a2ada2	rgb(134, 138, 134)
+light gray: #efefef		rgb(202, 206, 202)

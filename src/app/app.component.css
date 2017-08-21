@@ -1,0 +1,11 @@
+.middle-content {
+	display: block;
+	width: 60%;
+	height: 100%;
+	margin-top: 10px;
+
+	border: 1px solid #e0e0e0;
+	box-shadow: 0 2px 5px 0 #777;
+	background-color: white;
+	z-index: 100;
+}
