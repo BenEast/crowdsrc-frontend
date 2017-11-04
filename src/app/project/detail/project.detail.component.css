@@ -1,0 +1,37 @@
+.project-header {
+    padding: 80px 10px 10px 10px;
+}
+.section-wrapper {
+    width: 95%;
+    margin: auto;
+}
+
+.user-body {
+    align-items: stretch;
+    min-width: 150px;
+}
+.username {
+    color: var(--main-color);
+}
+
+.nav-tabs {
+    margin: -10px -10px 0 -10px;
+}
+.nav-link {
+    border-radius: 0;
+    padding: 10px 15px;
+    font-size: 1em;
+    color: var(--main-color);
+    text-decoration: none;
+    transition-duration: 0.3s !important;
+    -moz-transition-duration: 0.3s !important;
+    -webkit-transition-duration: 0.3s !important;
+}
+.nav-link:hover {
+    color: var(--dark-accent-color);
+}
+.badge {
+    margin: 23px 20px auto auto;
+	background-color: var(--mid-gray);
+    color: var(--main-color);
+}

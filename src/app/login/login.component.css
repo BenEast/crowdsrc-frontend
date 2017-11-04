@@ -1,0 +1,8 @@
+.form-toggle {
+    transition-duration: 0.3s !important;
+    -moz-transition-duration: 0.3s !important;
+    -webkit-transition-duration: 0.3s !important;
+}
+.form-toggle:hover {
+    color: var(--main-color) !important;
+}

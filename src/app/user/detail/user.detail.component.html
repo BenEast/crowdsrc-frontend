@@ -1,0 +1,66 @@
+<div class="container" *ngIf="user">
+    <div class="row">
+        <div class="visible top user-header col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-4 col-lg-push-4">
+            <div class="center-block row content-wrapper">
+                <div class="pull-left col-xs-3">
+                    <p class="center-block image">Image.png</p>
+                </div>
+                <h2 class="col-xs-9 col-md-6 username">{{user.username}}
+                    <h4 class="email">{{user.email}}</h4>
+                </h2>
+                <small class="col-xs-9 col-md-6 text-muted">User since: {{user.date_joined | date:'medium'}}
+                    <br> Last login: {{user.last_login | date:'medium'}}</small>
+                <app-update-profile-form *ngIf="currentUserId==userId" user="{{formUser}}" profileId="{{userId}}" (update)="onUpdate($event)"></app-update-profile-form>
+            </div>
+        </div>
+        <div class="visible user-body col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-4 col-lg-push-4">
+            <ul class="nav nav-tabs">
+                <li class="nav-item tab" (click)="currentTab='detail'">
+                    <a class="btn nav-link">
+                        <span class="glyphicon glyphicon-list"></span>
+                        <br>Details
+                    </a>
+                </li>
+                <li class="nav-item tab" (click)="currentTab='projects'">
+                    <a class="btn nav-link">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        <br>Projects
+                    </a>
+                </li>
+                <li class="nav-item tab" (click)="currentTab='teams'">
+                    <a class="btn nav-link">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <br>Teams
+                    </a>
+                </li>
+            </ul>
+            <div *ngIf="currentTab=='detail'">
+                <div class="row center-block content-wrapper">
+                    <p>Name: {{user.name}}</p>
+                    <p>Location: {{user.location}}</p>
+                    <p>Birthday: {{user.birth_date | date:'longDate'}}</p>
+                    <p>Bio: {{user.bio}}</p>
+                </div>
+                <div class="row center-block content-wrapper user-stats">
+                    <p>USER CONTRIBUTION STATS</p>
+                    <!-- Show user contribution stats, badges, etc -->
+                </div>
+            </div>
+            <div *ngIf="currentTab=='projects'">
+                <div class="row center-block content-wrapper project" *ngFor="let project of user.projects" (click)="routeTo('/projects/' + project.id)">
+                    <h3 class="project-title">{{project.title}}
+                        <span class="pull-right badge badge-default">
+                            <span class="glyphicon glyphicon-user"></span>&nbsp;{{project.team_member_count}}&nbsp;&nbsp;
+                            <span class="glyphicon glyphicon-tasks"></span>&nbsp;{{project.task_count}}
+                        </span>
+                    </h3>
+                    <small class="text-muted">{{project.create_datetime | date:'medium'}}</small>
+                    <p class="short-text">{{project.description}}</p>
+                </div>
+            </div>
+            <div *ngIf="currentTab=='teams'">
+                <p>Info about a user's teams</p>
+            </div>
+        </div>
+    </div>
+</div>

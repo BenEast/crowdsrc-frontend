@@ -1,12 +1,12 @@
-<form class="login-form pull-left" #loginForm="ngForm" (submit)="submitCredentials()">
-  <h3 class="text-center login-title">Login</h3>
+<h3 class="text-center form-title" *ngIf="!hideTitle">Login</h3>
+<form #loginForm="ngForm" (submit)="submitCredentials()">
   <div class="form-group">
-    <label for="enterUsername">Username:</label>
+    <label class="pull-left" for="enterUsername">Username:</label>
     <input type="text" class="form-control" id="loginUsername" aria-describedby="loginUsername" placeholder="Enter a username"
       [(ngModel)]="model.username" name="loginUsername" #loginUsername="ngModel" required>
-    <label for="enterPassword">Password:</label>
+    <label class="pull-left" for="enterPassword">Password:</label>
     <input type="password" class="form-control" id="loginPassword" aria-describedby="loginPassword" placeholder="Enter a password"
       [(ngModel)]="model.password" name="loginPassword" #loginPassword="ngModel" required>
   </div>
-  <button type="button" class="btn btn-primary center-block login-button" [disabled]="!loginForm.form.valid" (click)="submitCredentials()">Login</button>
+  <button type="button" class="btn btn-primary submit-button" [disabled]="!loginForm.form.valid" (click)="submitCredentials()">Login</button>
 </form>

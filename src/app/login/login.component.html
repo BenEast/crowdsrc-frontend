@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="visible top col-xs-12 col-sm-7 col-sm-push-5 col-md-push-4">
+      <h2 class="text-center">Login</h2>
+    </div>
+    <div class="visible text-center col-xs-12 col-sm-7 col-sm-push-5 col-md-push-4" *ngIf="!isAuthenticated">
+      <div *ngIf="showLogin">
+        <app-login-form class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-2 col-lg-6 col-lg-push-3" hideTitle="true"></app-login-form>
+        <div class="col-xs-12">
+          <p>or</p>
+          <p class="form-toggle" (click)="showLogin = !showLogin">Sign Up</p>
+        </div>
+      </div>
+      <div *ngIf="!showLogin">
+        <app-registration-form class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-2 col-lg-6 col-lg-push-3" hideTitle="true"></app-registration-form>
+        <div class="col-xs-12">
+          <p>or</p>
+          <p class="form-toggle" (click)="showLogin = !showLogin">Login</p>
+        </div>
+      </div>
+    </div>
+    <div class="visible col-xs-12 col-sm-7 col-sm-push-5 col-md-push-4" *ngIf="isAuthenticated">
+      <p class="text-center">You're already signed in!</p>
+      <button class="btn btn-primary col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-2 col-md-6 col-md-push-3 col-lg-4 col-lg-push-4" type="button" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</div>

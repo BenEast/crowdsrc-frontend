@@ -1,0 +1,15 @@
+.task {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--mid-gray);
+}
+.task:first-child {
+    padding-top: 0;
+}
+.task:last-child {
+    border: none;
+}
+.task-upper {
+    margin: 10px auto;
+    color: var(--main-color);
+}

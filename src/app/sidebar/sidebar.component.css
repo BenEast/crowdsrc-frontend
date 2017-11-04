@@ -1,17 +1,14 @@
 .sidebar {
     position: fixed;
-    display: inline-block;
-    z-index: 5000;
-
-	height: 40%;
+    z-index: 999;
+    
+    min-width: 205px;
+    max-width: 250px;
 	min-height: 400px;
-
-    width: 270px;
-	max-width: 270px;
-	min-width: 270px;
-
-    margin: 100px 1% 0 8%;
-    padding: 0;
+    margin-top: 141px;
+}
+.col-md-push-0 {
+    margin-left: 5%;
 }
 .inner-wrapper {
 	padding: 10px;
@@ -26,13 +23,13 @@
 .username {
     width: 100%;
     text-decoration: none;
-    color: orangered;
+    color: var(--main-color);
 }
 .image-wrapper {
     margin-top: 10px;
     height: 120px;
     width: 120px;
-    border: 1px solid #000;
+    border: 1px solid var(--dark-color);
 } 
 .spacer{
     margin-top: 15%;
@@ -45,5 +42,14 @@
     padding: 5px;
 }
 .side-list:hover {
-    color: orangered;
+    color: var(--main-color);
+}
+
+.form-toggle {
+    transition-duration: 0.25s !important;
+    -moz-transition-duration: 0.25s !important;
+    -webkit-transition-duration: 0.25s !important;
+}
+.form-toggle:hover {
+    color: var(--main-color) !important;
 }

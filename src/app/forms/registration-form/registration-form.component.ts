@@ -1,16 +1,17 @@
-import { Component, OnInit, } from '@angular/core';
-import { AuthenticationService } from '../../authentication.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
-import { SharedService } from '../../shared.service';
-import { User } from '../../user/user';
+import { SharedService } from '../../services/shared.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
-  styleUrls: ['./registration-form.component.css']
+  styleUrls: ['../forms.css']
 })
 export class RegistrationFormComponent implements OnInit {
-  model = new User(1, "", "", "", "", "", "");
+  @Input() hideTitle: boolean = false;
+  private model = new User(1, "", "", "", "", "", "", "", [], "", "", "", "");
 
   constructor(private _authService: AuthenticationService, private _router: Router, private _sharedService: SharedService) { }
   ngOnInit() { }
@@ -29,7 +30,6 @@ export class RegistrationFormComponent implements OnInit {
         }
       },
       error => {
-        //this._sharedService.deleteUser
         console.log("Error with user registration.");
         console.log(error.body);
       }

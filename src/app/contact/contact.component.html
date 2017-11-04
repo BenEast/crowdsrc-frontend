@@ -1,35 +1,37 @@
 <div class="container">
-  <h2 class="visible top center-block text-center title">Contact Us</h2>
-  <div class="visible center-block page-content" *ngIf="!messageSuccessful">
-    <div class="text-center row greeting-wrapper" *ngIf="isAuthenticated && currentUser">
-      <h3>Hi, {{currentUser.username}}!</h3>
-      <p>Please enter your message below.</p>
+  <div class="row">
+    <h2 class="visible top text-center col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-4 col-lg-push-4">Contact Us</h2>
+    <div class="visible col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-4 col-lg-push-4" *ngIf="!messageSuccessful">
+      <div class="text-center" *ngIf="isAuthenticated && currentUser">
+        <h3 class="message-title">Hi, {{currentUser.username}}!</h3>
+        <p>Please enter your message below.</p>
+      </div>
+      <form>
+        <div class="center-block form-group" *ngIf="!isAuthenticated || !currentUser">
+          <label for="contactEmailLine">Email:</label>
+          <textarea type="email" rows="1" class="center-block form-control" id="contactEmailLine" aria-describedby="contactEmailBody"
+            placeholder="Enter your email" required [(ngModel)]="contact.email" name="email"></textarea>
+        </div>
+        <div class="center-block form-group" *ngIf="!isAuthenticated || !currentUser">
+          <label for="contactNameLine">Name:</label>
+          <textarea type="name" rows="1" class="center-block form-control" id="contactNameLine" aria-describedby="contactNameLine"
+            placeholder="Enter your name (optional)" [(ngModel)]="contact.name" name="name"></textarea>
+        </div>
+        <div class="center-block form-group">
+          <label for="contactInputBody">Message:</label>
+          <textarea type="text" rows="5" class="center-block form-control" id="contactInputBody" aria-describedby="contactFormBody"
+            placeholder="Enter a message" required [(ngModel)]="contact.message" name="message"></textarea>
+        </div>
+        <div class="center-block form-group">
+          <button class="center-block btn btn-primary" type="button" (click)="sendMail()">Submit</button>
+        </div>
+      </form>
     </div>
-    <form class="center-block row">
-      <div class="col center-block form-group" *ngIf="!isAuthenticated || !currentUser">
-        <label for="contactEmailLine">Email</label>
-        <textarea type="email" rows="1" class="center-block form-control text-area" id="contactEmailLine" aria-describedby="contactEmailBody"
-          placeholder="Enter your email" required [(ngModel)]="contact.email" name="email"></textarea>
+    <div class="visible page-content col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-4 col-lg-push-4" *ngIf="messageSuccessful">
+      <div class="text-center success-wrapper">
+        <h3 class="message-title">Success!</h3>
+        <p>Your message has been submitted successfully.</p>
       </div>
-      <div class="col center-block form-group" *ngIf="!isAuthenticated || !currentUser">
-        <label for="contactNameLine">Name</label>
-        <textarea type="name" rows="1" class="center-block form-control text-area" id="contactNameLine" aria-describedby="contactNameLine"
-          placeholder="Enter your name (optional)" [(ngModel)]="contact.name" name="name"></textarea>
-      </div>
-      <div class="col center-block form-group">
-        <label for="contactInputBody">Message</label>
-        <textarea type="text" rows="5" class="center-block form-control text-area" id="contactInputBody" aria-describedby="contactFormBody"
-          placeholder="Enter a message" required [(ngModel)]="contact.message" name="message"></textarea>
-      </div>
-      <div class="col center-block form-group">
-        <button class="center-block btn btn-primary" type="button" (click)="sendMail()">Submit</button>
-      </div>
-    </form>
-  </div>
-  <div class="visible center-block page-content" *ngIf="messageSuccessful">
-    <div class="row text-center success-wrapper">
-      <h3>Success!</h3>
-      <p>Your message has been submitted successfully.</p>
     </div>
   </div>
 </div>

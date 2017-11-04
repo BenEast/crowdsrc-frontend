@@ -1,4 +1,4 @@
-<div class="pull-left visible sidebar">
+<div class="visible sidebar col-sm-3 col-sm-push-1 col-md-push-0 col-lg-2 col-lg-push-1">
   <div class="inner-wrapper" *ngIf="isAuthenticated && currentUser">
     <div class="row center-block user-info">
       <!-- Display user image in circle -->
@@ -17,16 +17,16 @@
   </div>
   <div class="inner-wrapper" *ngIf="!isAuthenticated || !currentUser">
     <!-- Login Form -->
-    <div class="login" *ngIf="!showRegistrationForm">
+    <div class="center-block login" *ngIf="!showRegistrationForm">
       <app-login-form></app-login-form>
       <p class="text-center">or</p>
-      <p class="text-center" (click)="showRegistrationForm = !showRegistrationForm">Register</p>
+      <p class="text-center form-toggle" (click)="showRegistrationForm = !showRegistrationForm">Sign Up</p>
     </div>
     <!-- Registration Form -->
-    <div class="register" *ngIf="showRegistrationForm">
+    <div class="center-block register" *ngIf="showRegistrationForm">
       <app-registration-form></app-registration-form>
       <p class="text-center">or</p>
-      <p class="text-center" (click)="showRegistrationForm = !showRegistrationForm">Login</p>
+      <p class="text-center form-toggle" (click)="showRegistrationForm = !showRegistrationForm">Login</p>
     </div>
   </div>
 </div>

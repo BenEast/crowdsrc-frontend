@@ -1,13 +1,73 @@
-<div class="navbar navbar-default">
-	<div class="nav navbar-nav navbar-left">
-		<button class="navbar-brand btn btn-secondary pull-left" type="button" (click)="routeTo('')"><span class="glyphicon glyphicon-home"></span></button>
-		<form class="navbar-brand navbar-form input-group" role="search">
-			<input type="text" class="form-control center-block" placeholder="Search" name="search-bar" id="search-bar">
-			<div class="input-group-btn pull-left">
-				<button class="btn btn-primary" type="submit">
-					<span class="glyphicon glyphicon-search"></span>
-				</button>
-			</div>
-		</form>
+<div class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed dropdown-button" (click)="toggleState()">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="nav navbar-nav collapse navbar-collapse" [ngClass]="{ 'in': isIn }">
+			<ul class="center-block row nav navbar-nav collapsed-dropdown">
+				<li class="col-xs-12 col-sm-10 nav-item menu-search"  [ngClass]="{ 'pull-right col-md-push-2 col-lg-push-3' : !isIn }">
+					<form class="navbar-brand navbar-form input-group" role="search">
+						<input type="text" class="pull-left form-control" placeholder="Search" name="search-bar" id="search-bar">
+						<div class="pull-left">
+							<button class="btn btn-primary search-button" type="submit">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</div>
+					</form>
+				</li>
+				<li class="col-xs-12 col-sm-1 nav-item" (click)="routeTo('')" [ngClass]="{ 'col-md-push-2 col-lg-push-3' : !isIn }">
+					<div class="navbar-brand row menu-button" [ngClass]="{ 'pull-left' : isIn }">
+						<span class="glyphicon glyphicon-home"></span>
+						<h4 class="menu-label" *ngIf="isIn">&nbsp;Home</h4>
+					</div>
+				</li>
+				<li class="col-xs-12 nav-item" *ngIf="isIn && currentUserId" (click)="routeTo('/profiles/' + currentUserId)">
+					<div class="navbar-brand pull-left row menu-button">
+						<span class="glyphicon glyphicon-user"></span>
+						<h4 class="menu-label">&nbsp;Your Profile</h4>
+					</div>
+				</li>
+				<li class="col-xs-12 nav-item" *ngIf="isIn && currentUserId" (click)="routeTo('settings')">
+					<div class="navbar-brand pull-left row menu-button">
+						<span class="glyphicon glyphicon-cog"></span>
+						<h4 class="menu-label">&nbsp;Settings</h4>
+					</div>
+				</li>
+				<li class="col-xs-12 nav-item" *ngIf="isIn" (click)="routeTo('contact')">
+					<div class="navbar-brand pull-left row menu-button">
+						<span class="glyphicon glyphicon-envelope"></span>
+						<h4 class="menu-label">&nbsp;Contact Us</h4>
+					</div>
+				</li>
+				<li class="col-xs-12 nav-item" *ngIf="isIn" (click)="routeTo('about')">
+					<div class="navbar-brand pull-left row menu-button">
+						<span class="glyphicon glyphicon-question-sign"></span>
+						<h4 class="menu-label">&nbsp;About Crowdsrc</h4>
+					</div>
+				</li>
+				<!-- 
+					Update these login button to be handled entirely in dropdown:
+					-Login block expands to show login box in menu, can flip to registration
+				  -->
+				<li class="col-xs-12 nav-item" *ngIf="isIn && !isAuthenticated" (click)="routeTo('login')">
+					<div class="navbar-brand pull-left row menu-button">
+						<span class="glyphicon glyphicon-log-in"></span>
+						<h4 class="menu-label">&nbsp;Login</h4>
+					</div>
+				</li>
+				<li class="col-xs-12 nav-item" *ngIf="isIn && isAuthenticated" (click)="logout()">
+					<div class="navbar-brand pull-left row menu-button">
+						<span class="glyphicon glyphicon-log-out"></span>
+						<h4 class="menu-label">&nbsp;Logout</h4>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>
+<app-sidebar class="hidden-xs visible-sm-block visible-md-block visible-lg-block"></app-sidebar>

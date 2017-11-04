@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user/user';
-import { AuthenticationService } from '../authentication.service';
-import { SharedService } from '../shared.service';
+import { User } from '../models/user';
+import { AuthenticationService } from '../services/authentication.service';
+import { SharedService } from '../services/shared.service';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
@@ -12,9 +12,9 @@ import { CookieService } from 'ngx-cookie';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  currentUser: User;
-  isAuthenticated: boolean = false;
-  showRegistrationForm: boolean = false;
+  private currentUser: User;
+  private isAuthenticated: boolean;
+  private showRegistrationForm: boolean;
 
   constructor(private _authService: AuthenticationService, private _cookieService: CookieService,
     private _router: Router, private _sharedService: SharedService) { }
@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit {
     this.showRegistrationForm = false;
     this.isAuthenticated = this._authService.userIsAuthenticated();
 
-    if (this.isAuthenticated) {
+    if (this.isAuthenticated && !this.currentUser) {
       // Get user id from token
       this._authService.getCurrentUserId().subscribe(
         response => {
@@ -45,14 +45,13 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  routeTo(route: string) {
+  private routeTo(route: string) {
     this._router.navigateByUrl(route);
   }
 
-  logout() {
+  private logout() {
     if (this.isAuthenticated) {
-      this._cookieService.remove('crowdsrc');
-      window.location.reload();
+      this._authService.logout();
     }
   }
 }

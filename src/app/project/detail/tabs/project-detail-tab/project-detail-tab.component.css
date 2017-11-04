@@ -1,0 +1,85 @@
+.project-details {
+    margin-bottom: 10px;
+}
+.category {
+    padding-top: 10px;
+}
+.description {
+    line-height: 20px;
+    height: 60px;
+    overflow: hidden;
+}
+.show {
+    overflow: visible;
+    height: auto;
+}
+.show-more {
+    width: 100%;
+    padding: 5px;
+    border-top: 1px solid var(--mid-gray);
+    border-bottom: 1px solid var(--mid-gray);
+    color: var(--main-color);
+    transition-duration: 0.3s !important;
+    -moz-transition-duration: 0.3s !important;
+    -webkit-transition-duration: 0.3s !important;
+}
+.show-more:hover {
+    background-color: var(--light-gray);
+    color: var(--dark-accent-color);
+}
+.message-form {
+    margin: 0 auto;
+    padding-bottom: 0;
+}
+.form-wrapper {
+    padding: 0;
+    height: 95px;
+}
+.submit-message-button {
+    margin-top: 10px;
+}
+
+.message {
+    margin-top: 0;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    border-top: 1px solid var(--mid-gray);
+}
+.message:first-child {
+    padding-top: 10px;
+    border: none;
+}
+
+.support-button {
+    color: var(--main-color);
+    background-color: transparent;
+    border: none;
+}
+.support-button:active, .support-button:focus {
+    background-color: transparent;
+    box-shadow: none;
+    color: var(--dark-accent-color);
+    outline: none;
+}
+
+.message-user-wrapper {
+    padding-bottom: 5px;
+}
+.message-create-date {
+    line-height: 0.8em;
+    padding: 5px 10px;
+}
+.user-image {
+    width: 70px;
+    height: 70px;
+    border: 1px solid var(--dark-color);
+}
+.team-username {
+    padding-top: 15px;
+    line-height: 1em;
+    color: var(--main-color);
+    padding-left: 10px;
+}
+.team-username p {
+    display: inline-block;
+}

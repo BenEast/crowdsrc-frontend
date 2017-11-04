@@ -1,0 +1,26 @@
+<div *ngIf="tasks.length">
+  <div class="task" *ngFor="let task of tasks">
+      <div class="row task-upper">
+          <h4 class="center-block">{{task.title}}
+              <p class="pull-right">{{task.status}}</p>
+              <!-- APP STATUS MODAL TAG 
+              -show users working on task
+              -completion meter???
+              -progress/uploads???
+
+              -show task communication? messages between members etc?
+
+              Display modal when they click the status
+
+              -Allow only task workers to add messages/update status/completion
+          -->
+          </h4>
+          <small class="text-muted pull-left">Last updated {{task.last_updated | date:'medium'}}</small>
+      </div>
+      <p class="pull-left col-xs-12">Suggested Skills: {{task.skills}}</p>
+      <p class="center-block col-xs-12">{{task.description}}</p>
+  </div>
+</div>
+<div class="text-center" *ngIf="!tasks.length">
+  <p>There are no available tasks at the moment!</p>
+</div>

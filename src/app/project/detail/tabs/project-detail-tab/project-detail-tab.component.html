@@ -1,0 +1,43 @@
+<div class="project-details">
+  <p class="category">{{project.category}}</p>
+  <p class="description" [ngClass]="{show: show}">{{project.description}}</p>
+  <div class="center-block text-center show-more" (click)="show = !show">
+    <h5 *ngIf="!show">
+      <span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;Read More</h5>
+    <h5 *ngIf="show">
+      <span class="glyphicon glyphicon-triangle-top"></span>&nbsp;Read Less</h5>
+  </div>
+</div>
+<div class="message-form" *ngIf="userIsOnTeam">
+  <form class="content-wrapper center-block">
+    <div class="row form-group">
+      <div class="col-xs-9 col-md-10 form-wrapper">
+        <textarea class="center-block form-control message-input" #message rows="4" placeholder="Write a message to your team!" required></textarea>
+      </div>
+      <div class="col-xs-3 col-md-2 form-wrapper">
+        <div class="text-center">
+          <input class="private-box" type="checkbox" name="private" [value]="true" #private>&nbsp;Private
+        </div>
+        <button class="center-block btn btn-primary submit-message-button" (click)="submitTeamMessage(message.value, private.value); message.value='';">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div *ngIf="currentUser && project.team.messages.length">
+  <div class="center-block message" *ngFor="let message of project.team.messages.slice().reverse()">
+    <div class="row center-block message-user-wrapper">
+      <div class="pull-right">
+        <button class="btn btn-primary support-button" type="button">12&nbsp;
+          <span class="glyphicon glyphicon-heart"></span>
+        </button>
+        <app-delete-team-message-modal [messageId]="message.id" (refreshProject)="emitRefreshProject()" *ngIf="currentUser.id==message.user.id"></app-delete-team-message-modal>
+      </div>
+      <div class="pull-left user-image" (click)="routeTo('/profiles/' + message.user.id)">image</div>
+      <div class="col-xs-7 team-username">
+        <p (click)="routeTo('/profiles/' + message.user.id)">{{message.user?.username}}</p>
+      </div>
+      <small class="col-xs-7 text-muted pull-left message-create-date">{{message.create_datetime | date:'medium'}}</small>
+    </div>
+    <p>{{message.body}}</p>
+  </div>
+</div>

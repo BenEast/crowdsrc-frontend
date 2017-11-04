@@ -30,6 +30,7 @@
     "material2": "^2.0.0-alpha.6-2",
     "ng2-cookies": "^1.0.12",
     "ngx-cookie": "^1.0.0",
+    "ngx-pipes": "^1.6.4",
     "node-sass": "^4.5.3",
     "rxjs": "^5.1.0",
     "typings": "^2.1.1",

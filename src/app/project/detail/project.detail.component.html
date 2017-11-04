@@ -1,0 +1,53 @@
+<div class="container" *ngIf="project">
+    <div class="row">
+        <div class="visible top project-header col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-4 col-lg-push-4">
+            <div class="center-block row content-wrapper">
+                <h2 class="text-center">{{project.title}}</h2>
+                <h4 class="username" (click)="routeTo('/profiles/' + project.user.id)">{{project.user.username}}
+                    <p class="pull-right">
+                        <a href="http://{{project.website}}">{{project.website}}</a>
+                    </p>
+                </h4>
+                <small class="text-muted">Created {{project.create_datetime | date:'medium'}}</small>
+                <div class="pull-right" *ngIf="currentUser && project.user.id==currentUser.id">
+                    <button type="button" class="btn btn-secondary">Edit</button>
+                </div>
+            </div>
+        </div>
+        <div class="visible col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-4 col-lg-push-4">
+            <ul class="nav nav-tabs">
+                <li class="nav-item tab" (click)="currentTab='detail'">
+                    <a class="btn nav-link">
+                        <span class="glyphicon glyphicon-list"></span>
+                        <br>Details
+                    </a>
+                </li>
+                <li class="nav-item tab" (click)="currentTab='tasks'">
+                    <a class="btn nav-link">
+                        <span class="glyphicon glyphicon-tasks"></span>
+                        <br>Tasks
+                    </a>
+                </li>
+                <li class="nav-item tab" (click)="currentTab='stats'">
+                    <a class="btn nav-link">
+                        <span class="glyphicon glyphicon-stats"></span>
+                        <br>Stats
+                    </a>
+                </li>
+                <li class="badge badge-default pull-right">
+                    <span class="glyphicon glyphicon-user"></span>&nbsp;{{project.team_member_count}}&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-tasks"></span>&nbsp;{{project.task_count}}
+                </li>
+            </ul>
+            <div class="center-block content-wrapper" *ngIf="currentTab=='detail'">
+                <app-project-detail-tab [project]="project" (refreshProject)="getProject()">Loading details...</app-project-detail-tab>
+            </div>
+            <div class="center-block content-wrapper" *ngIf="currentTab=='tasks'">
+                <app-project-task-tab [tasks]="project.tasks">Loading tasks...</app-project-task-tab>
+            </div>
+            <div class="center-block content-wrapper" *ngIf="currentTab=='stats'">
+                <app-project-stats-tab>Loading stats...</app-project-stats-tab>
+            </div>
+        </div>
+    </div>
+</div>

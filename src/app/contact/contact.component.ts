@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user/user';
-import { AuthenticationService } from '../authentication.service';
-import { SharedService } from '../shared.service';
+import { User } from '../models/user';
+import { AuthenticationService } from '../services/authentication.service';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-contact',
@@ -9,10 +9,10 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  contact = { "email": "", "name": "", "message": "" };
-  currentUser;
-  messageSuccessful: boolean = false;
-  isAuthenticated: boolean = false;
+  private contact = { "email": "", "name": "", "message": "" };
+  private currentUser;
+  private messageSuccessful: boolean = false;
+  private isAuthenticated: boolean = false;
   constructor(private _authService: AuthenticationService, private _sharedService: SharedService) { }
 
   ngOnInit() {
@@ -48,7 +48,7 @@ export class ContactComponent implements OnInit {
     if (this.isAuthenticated && this.currentUser) {
       contact_json['username'] = this.currentUser.username;
       contact_json['email'] = this.currentUser.email;
-      contact_json['name'] = this.currentUser.first_name + ' ' + this.currentUser.last_name;
+      contact_json['name'] = this.currentUser.name;
     } else {
       contact_json['username'] = "";
       contact_json['email'] = this.contact.email;
