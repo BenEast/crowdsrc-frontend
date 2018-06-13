@@ -1,0 +1,30 @@
+.row {
+    border-bottom: 1px solid var(--light-gray);
+    margin-bottom: 10px;
+}
+.skill>small {
+    position: absolute;
+    right: 100px;
+}
+.help-block {
+    font-size: 14px;
+}
+h4 {
+    margin: 0 auto;
+}
+
+@media (max-width: 500px) {
+    .skill>span {
+        margin-right: 5px;
+    }
+    .skill>small {
+        position: relative;
+        right: auto;
+    }
+}
+@media (max-width: 420px) {
+    .skill>small {
+        display: inline-block;
+        width: 50%;
+    }
+}

@@ -1,0 +1,15 @@
+@import url("../forms.css");
+
+.help-block, .help-block div div {
+    text-align: justify;
+    margin-bottom: 0;
+}
+.far {
+    margin-left: 0;
+}
+.fa-check-circle {
+    color: var(--success-color);
+}
+.fa-times-circle {
+    color: var(--danger-color);
+}

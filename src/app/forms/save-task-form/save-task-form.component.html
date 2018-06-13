@@ -1,0 +1,8 @@
+<div class="wrapper no-pad">
+    <span class="point ease-io no-pad" *ngIf="isSaved" (click)="unsaveTask()">
+        <span class="fas fa-star"></span>
+    </span>
+    <span class="point ease-io no-pad" *ngIf="!isSaved" (click)="saveTask()">
+        <span class="far fa-star"></span>
+    </span>
+</div>

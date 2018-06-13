@@ -1,43 +1,29 @@
+<!-- Start project category and description -->
 <div class="project-details">
-  <p class="category">{{project.category}}</p>
-  <p class="description" [ngClass]="{show: show}">{{project.description}}</p>
-  <div class="center-block text-center show-more" (click)="show = !show">
-    <h5 *ngIf="!show">
-      <span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;Read More</h5>
-    <h5 *ngIf="show">
-      <span class="glyphicon glyphicon-triangle-top"></span>&nbsp;Read Less</h5>
+  <h4 class="col-xs-12">
+    <!-- add category form -->
+    <app-add-category-form *ngIf="edit_mode && currentUser?.id == project.user.id" (addedCategory)="onCategoryCreate($event)"
+      [projectId]="project.id"></app-add-category-form>
+    <app-project-category *ngFor="let category of project.categories; let i = index" [edit_mode]="edit_mode"
+      [category]="category" [index]="i" [projectId]="project.id" (deletedCategory)="onCategoryDelete($event)"></app-project-category>
+  </h4>
+  <div class="col-xs-12">
+    <p *ngIf="!edit_mode" class="preserve-formatting description">{{project.description}}</p>
+    <textarea *ngIf="edit_mode" name="editDescription" [(ngModel)]="edit_description" rows="4" class="form-control" placeholder="Enter a description"></textarea>
   </div>
 </div>
-<div class="message-form" *ngIf="userIsOnTeam">
-  <form class="content-wrapper center-block">
-    <div class="row form-group">
-      <div class="col-xs-9 col-md-10 form-wrapper">
-        <textarea class="center-block form-control message-input" #message rows="4" placeholder="Write a message to your team!" required></textarea>
-      </div>
-      <div class="col-xs-3 col-md-2 form-wrapper">
-        <div class="text-center">
-          <input class="private-box" type="checkbox" name="private" [value]="true" #private>&nbsp;Private
-        </div>
-        <button class="center-block btn btn-primary submit-message-button" (click)="submitTeamMessage(message.value, private.value); message.value='';">Submit</button>
-      </div>
-    </div>
-  </form>
+<!-- End project category and description -->
+<!-- Start team message form -->
+<div class="message-form-wrapper">
+  <app-project-detail-tab-message-form class="center-block content-wrapper" [userId]="currentUser?.id" [projectId]="project.id"
+    (postedMessage)="appendMessage($event)"></app-project-detail-tab-message-form>
 </div>
-<div *ngIf="currentUser && project.team.messages.length">
-  <div class="center-block message" *ngFor="let message of project.team.messages.slice().reverse()">
-    <div class="row center-block message-user-wrapper">
-      <div class="pull-right">
-        <button class="btn btn-primary support-button" type="button">12&nbsp;
-          <span class="glyphicon glyphicon-heart"></span>
-        </button>
-        <app-delete-team-message-modal [messageId]="message.id" (refreshProject)="emitRefreshProject()" *ngIf="currentUser.id==message.user.id"></app-delete-team-message-modal>
-      </div>
-      <div class="pull-left user-image" (click)="routeTo('/profiles/' + message.user.id)">image</div>
-      <div class="col-xs-7 team-username">
-        <p (click)="routeTo('/profiles/' + message.user.id)">{{message.user?.username}}</p>
-      </div>
-      <small class="col-xs-7 text-muted pull-left message-create-date">{{message.create_datetime | date:'medium'}}</small>
-    </div>
-    <p>{{message.body}}</p>
-  </div>
+<!-- End team message form -->
+<!-- Start team messages -->
+<div *ngIf="project?.messages?.length">
+  <app-team-message-component *ngFor="let message of project.messages; let i = index" (deletedMessage)="onMessageDelete($event)"
+    (deletedReply)="onReplyDelete($event)" [message]="message" [index]="i"></app-team-message-component>
 </div>
+<!-- End team messages -->
+<app-loading *ngIf="loadingData && !project.messages?.length"></app-loading>
+<div *ngIf="!project.messages?.length && !loadingData" class="text-center">There's nothing here!</div>

@@ -1,0 +1,41 @@
+<div class="container no-pad" *ngIf="!loading">
+  <div class="row center-block">
+    <h4>Received requests</h4>
+    <div *ngIf="received?.length">
+      <div class="received ease-io" *ngFor="let request of received; let i = index" [ngClass]="{'unseen': !request.is_viewed}"
+        (mouseleave)="request.is_viewed ? '' : onRequestView(i)">
+        <app-user-square-list-entry class="sender" [user]="request.sender"></app-user-square-list-entry>
+        <a class="row center-block no-bord point accept" (click)="respond(true, i)">
+          <span class="fas fa-check"></span>Accept
+        </a>
+        <a class="row center-block no-bord point reject" (click)="respond(false, i)">
+          <span class="fas fa-times"></span>Reject
+        </a>
+      </div>
+    </div>
+    <div *ngIf="!received?.length">
+      <div class="row center-block text-center text-muted">You have no new crowd requests.</div>
+    </div>
+  </div>
+  <div class="row center-block">
+    <h4>Sent requests</h4>
+    <div *ngIf="pending?.length">
+      <app-user-square-list-entry class="crowd-user" *ngFor="let user of pending; let i = index" [user]="user"></app-user-square-list-entry>
+    </div>
+    <div *ngIf="!pending?.length">
+      <div class="row center-block text-center text-muted">You have no pending crowd requests.</div>
+    </div>
+  </div>
+  <div class="row center-block no-bord">
+    <h4>My crowd</h4>
+    <div *ngIf="crowd?.length">
+      <app-user-square-list-entry class="crowd-user" *ngFor="let user of crowd; let i = index" [user]="user"></app-user-square-list-entry>
+    </div>
+    <div *ngIf="!crowd?.length">
+      <div class="row center-block text-center text-muted">Nobody is in your crowd.</div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="loading">
+  <app-loading></app-loading>
+</div>

@@ -1,27 +1,27 @@
-<div class="container">
-  <div class="row">
-    <div class="visible top col-xs-12 col-sm-7 col-sm-push-5 col-md-push-4">
-      <h2 class="text-center">Login</h2>
-    </div>
-    <div class="visible text-center col-xs-12 col-sm-7 col-sm-push-5 col-md-push-4" *ngIf="!isAuthenticated">
-      <div *ngIf="showLogin">
-        <app-login-form class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-2 col-lg-6 col-lg-push-3" hideTitle="true"></app-login-form>
-        <div class="col-xs-12">
-          <p>or</p>
-          <p class="form-toggle" (click)="showLogin = !showLogin">Sign Up</p>
-        </div>
+<div class="container outer">
+  <div class="visible">
+    <div class="row text-center" *ngIf="showLogin">
+      <div id="changed-password-dialog" class="text-center" *ngIf="changedPassword">Your password has been changed.
+        <br>Login below using your new password.
+        <br>
+        <br>Questions?
+        <a routerLink="/contact">Contact us.</a>
       </div>
-      <div *ngIf="!showLogin">
-        <app-registration-form class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-2 col-lg-6 col-lg-push-3" hideTitle="true"></app-registration-form>
-        <div class="col-xs-12">
-          <p>or</p>
-          <p class="form-toggle" (click)="showLogin = !showLogin">Login</p>
-        </div>
+      <div class="col-xs-12" id="logo-wrapper">
+        <img src="assets/crowdSRC_Logo.svg">
+      </div>
+      <app-login-form class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-2 col-lg-6 col-lg-push-3" [hideTitle]="true"></app-login-form>
+      <div class="col-xs-12">
+        <p>or</p>
+        <p class="form-toggle ease-io point" (click)="showLogin = !showLogin">Sign Up</p>
       </div>
     </div>
-    <div class="visible col-xs-12 col-sm-7 col-sm-push-5 col-md-push-4" *ngIf="isAuthenticated">
-      <p class="text-center">You're already signed in!</p>
-      <button class="btn btn-primary col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-2 col-md-6 col-md-push-3 col-lg-4 col-lg-push-4" type="button" (click)="logout()">Logout</button>
+    <div class="row text-center" *ngIf="!showLogin">
+      <app-registration-form class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-2 col-lg-6 col-lg-push-3" [hideTitle]="true"></app-registration-form>
+      <div class="col-xs-12">
+        <p>or</p>
+        <p class="form-toggle ease-io point" (click)="showLogin = !showLogin">Login</p>
+      </div>
     </div>
   </div>
 </div>

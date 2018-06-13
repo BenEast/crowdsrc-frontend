@@ -1,0 +1,95 @@
+<div class="content-section">
+    <h4 class="text-muted content-header">
+        <div class="col-xs-4 no-pad">
+            <span class="far fa-cogs fa-lg"></span>&nbsp;&nbsp;Skills
+        </div>
+        <div class="col-xs-2 no-pad pull-right">
+            <span class="pull-right" *ngIf="currentUser?.id == user.id && !skillEditMode" (click)="skillEditMode = true" data-toggle="collapse"
+                data-target=".skill-form">
+                <span class="far fa-edit point ease-io"></span>
+            </span>
+            <span class="pull-right" *ngIf="currentUser?.id == user.id && skillEditMode" (click)="skillEditMode = false" data-toggle="collapse"
+                data-target=".skill-form">
+                <span class="fas fa-check point ease-io"></span>
+            </span>
+        </div>
+        <app-add-skill-form class="skill-form collapse no-pad col-xs-12 col-sm-6 col-md-5 col-lg-4" *ngIf="currentUser?.id == user.id"
+            [user_id]="user.id" (addedSkill)="addSkill($event)"></app-add-skill-form>
+    </h4>
+    <div class="wide badge-container">
+        <app-skill-detail *ngFor="let skill of user.skills; let i = index" (removedSkill)="removeSkill(i)" [editMode]="skillEditMode"
+            [skill]="skill" [index]="i"></app-skill-detail>
+    </div>
+</div>
+<div class="content-section">
+    <h4 class="text-muted content-header wide">
+        <span class="far fa-university fa-lg"></span>&nbsp;&nbsp;Qualifications
+        <span class="pull-right" *ngIf="currentUser?.id == user.id">
+            <span class="far fa-edit point ease-io"></span>
+        </span>
+    </h4>
+    <div class="row">
+        <div class="content-wrapper">user qualifications section</div>
+    </div>
+</div>
+<div class="content-section">
+    <h4 class="text-muted content-header wide">
+        <span class="far fa-id-card fa-lg"></span>&nbsp;&nbsp;About
+        <span class="pull-right" (click)="aboutEditMode = true" *ngIf="currentUser?.id == user.id && !aboutEditMode">
+            <span class="far fa-edit point ease-io"></span>
+        </span>
+        <span class="pull-right" (click)="submitAboutForm()" *ngIf="currentUser?.id == user.id && aboutEditMode">
+            <span class="fas fa-check point ease-io"></span>
+        </span>
+        <span class="pull-right" (click)="aboutEditMode = false; aboutEditError = false; resetAboutModel();" *ngIf="currentUser?.id == user.id && aboutEditMode">
+            <span class="fas fa-times point ease-io"></span>
+        </span>
+    </h4>
+    <div class="row">
+        <div *ngIf="aboutEditError" class="wide panel panel-danger">
+            <div class="panel-heading text-center">
+                Error updating your profile! Please try again later.
+            </div>
+        </div>
+        <p *ngIf="!aboutEditMode" class="col-xs-1">Name:&nbsp;&nbsp;</p>
+        <p *ngIf="!aboutEditMode" class="col-xs-9 col-xs-push-2 col-sm-push-1">{{user.first_name}} {{user.last_name}}</p>
+        <div *ngIf="aboutEditMode" class="col-xs-6 inline-label">
+            <div class="push-down">First Name:</div>
+            <input type="text" class="pull-right form-control" [(ngModel)]="aboutModel.first_name" name="editFirstName" placeholder="Enter your first name">
+        </div>
+        <div *ngIf="aboutEditMode" class="col-xs-6 inline-label">
+            <div class="push-down">Last Name:</div>
+            <input type="text" class="pull-right form-control" [(ngModel)]="aboutModel.last_name" name="editLastName" placeholder="Enter your last name">
+        </div>
+    </div>
+    <div class="row" *ngIf="user.email">
+        <p class="col-xs-1" [ngClass]="{'push-down': aboutEditMode}">Email:&nbsp;&nbsp;</p>
+        <p class="col-xs-9 col-xs-push-2 col-sm-push-1">{{user.email}}</p>
+        <small *ngIf="aboutEditMode" class="help-block col-xs-12">Visit your
+            <a routerLink="/settings" [queryParams]="{tab: 'account'}">account settings</a>
+            to update your email.
+        </small>
+    </div>
+    <div class="row">
+        <div class="col-xs-1" [ngClass]="{'push-down': aboutEditMode}">Location:&nbsp;&nbsp;</div>
+        <p *ngIf="!aboutEditMode" class="col-xs-9 col-xs-push-2 col-sm-push-1">{{user.location}}</p>
+        <input *ngIf="aboutEditMode" type="text" class="col-xs-9 col-xs-push-2 col-md-push-1 form-control" [(ngModel)]="aboutModel.location"
+            name="editLocation" placeholder="Enter your location">
+    </div>
+    <div class="row" *ngIf="user_age && !aboutEditMode">
+        <p class="col-xs-1">Age:&nbsp;&nbsp;</p>
+        <p class="col-xs-9 col-xs-push-2 col-sm-push-1">{{user_age}} years old</p>
+    </div>
+    <div class="row" *ngIf="user.birth_date">
+        <p class="col-xs-1" [ngClass]="{'push-down': aboutEditMode}">Birthday:&nbsp;&nbsp;</p>
+        <p *ngIf="!aboutEditMode" class="col-xs-9 col-xs-push-2 col-sm-push-1">{{user.birth_date | date:'longDate'}}</p>
+        <input *ngIf="aboutEditMode" type="date" class="col-xs-9 col-xs-push-2 col-md-push-1 form-control" [(ngModel)]="aboutModel.birth_date"
+            name="editBirthday">
+    </div>
+    <div class="row">
+        <p class="col-xs-1" [ngClass]="{'push-down': aboutEditMode}">About:&nbsp;&nbsp;</p>
+        <p *ngIf="!aboutEditMode" class="col-xs-9 col-xs-push-2 col-sm-push-1">{{user.bio}}</p>
+        <textarea *ngIf="aboutEditMode" rows="3" class="col-xs-8 col-xs-push-2 col-md-push-1 form-control" [(ngModel)]="aboutModel.bio"
+            placeholder="Enter a biography"></textarea>
+    </div>
+</div>

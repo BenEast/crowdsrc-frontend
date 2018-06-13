@@ -1,0 +1,40 @@
+#update-email-form {
+    width: 80%;
+}
+#email-error-dialog {
+    color: var(--danger-color);
+}
+#email-success-dialog {
+    color: var(--success-color);
+}
+#email-error-dialog, #email-success-dialog {
+    margin-bottom: 10px;
+}
+.help-block {
+    font-size: 14px;
+}
+.btn-wrapper {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 1000px) {
+    #update-email-form {
+        width: 85%;
+    }
+}
+@media (max-width: 750px) {
+    #update-email-form {
+        width: 90%;
+    }
+}
+@media (max-width: 500px) {
+    #update-email-form {
+        width: 95%;
+    }
+}
+@media (max-width: 400px) {
+    #update-email-form {
+        width: 100%;
+    }
+}

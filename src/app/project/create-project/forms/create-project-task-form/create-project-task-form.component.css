@@ -1,0 +1,23 @@
+.form-group:last-child {
+    margin: 20px auto 0;
+}
+.task-wrapper {
+    margin-top: 15px;
+    border-top: 1px solid var(--light-gray);
+}
+.fa-question-circle:hover {
+    color: var(--dark-gray);
+}
+.badge {
+    margin-right: 5px;
+}
+.badge div {
+    display: inline-block;
+    margin: auto auto 1px 5px;
+}
+.fa-times:hover{
+    color: var(--danger-color);
+}
+.btn:last-child {
+    margin-right: 10px;
+}

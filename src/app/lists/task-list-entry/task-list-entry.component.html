@@ -1,0 +1,49 @@
+<div class="row center-block content-wrapper task" *ngIf="task">
+  <div class="row task-upper">
+    <h4 *ngIf="!editMode" class="center-block">{{task.title | capitalize}}
+      <div class="pull-right">{{task.status | capitalize}}</div>
+      <div class="pull-right">
+        <app-submissions-view id="submissions" *ngIf="task.submissions.length && allowEdit" class="pull-right" (taskCompleted)="onTaskCompleted($event)"
+          [submissions]="task.submissions" [taskId]="task.id" [index]="index"></app-submissions-view>
+      </div>
+    </h4>
+    <div *ngIf="editMode" class="center-block title-edit">
+      <input class="pull-left form-control" type="text" name="editTitle{{index}}" [(ngModel)]="editModel.title" placeholder="Enter a title for the task">
+    </div>
+    <div class="col-xs-8 no-pad">
+      <small class="wide pull-left text-muted">Created {{task.created | date:'medium'}}</small>
+      <small class="wide pull-left text-muted">Last updated {{task.last_updated | date:'medium'}}</small>
+    </div>
+    <div class="col-xs-4 no-pad pull-right">
+      <span class="pull-right" *ngIf="!editMode && allowEdit" (click)="editMode = true">
+        <span class="point ease-io far fa-edit fa-fw"></span>
+      </span>
+      <span class="pull-right" *ngIf="editMode && allowEdit" (click)="updateTask()">
+        <span class="point ease-io fas fa-check fa-fw"></span>
+      </span>
+      <span class="pull-right" *ngIf="editMode && allowEdit" (click)="editMode = false; setEditModel()">
+        <span class="point ease-io fas fa-ban fa-fw"></span>
+      </span>
+      <span class="pull-right" *ngIf="editMode && allowEdit" (click)="deleteTask()">
+        <span class="point ease-io fas fa-times fa-fw"></span>
+      </span>
+      <app-save-task-form id="save" class="pull-right" *ngIf="currentUser && showSaveButton" (unsaved)="unsaved.emit($event)" [isSaved]="task.is_saved"
+        [taskId]="task.id"></app-save-task-form>
+    </div>
+  </div>
+  <div class="row task-upper">
+    <app-add-skill-form class="col-xs-12 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3" *ngIf="editMode" [task_id]="task.id"
+      (addedSkill)="onAddedSkill($event)"></app-add-skill-form>
+    <div class="pull-left no-pad col-xs-12">
+      <app-skill-detail *ngFor="let skill of task.skills; let j = index" [task_id]="task.id" [skill]="skill" [index]="j" [editMode]="editMode"
+        (removedSkill)="onRemovedSkill($event, j)"></app-skill-detail>
+    </div>
+  </div>
+  <div *ngIf="!editMode" class="center-block preserve-formatting">{{task.description}}</div>
+  <div *ngIf="editMode" class="center-block">
+    <textarea class="form-control" rows="4" placeholder="Enter a description" name="editDescription" [(ngModel)]="editModel.description"></textarea>
+  </div>
+  <app-task-submission-form *ngIf="currentUser && !userSubmission && allowSubmissions" [taskId]="task.id" (addedSubmission)="onAddSubmission($event)"></app-task-submission-form>
+  <app-user-submission-view *ngIf="currentUser && userSubmission && showSubmissionView" (deletedSubmission)="onUserSubmissionDelete()"
+    (updatedSubmission)="onUserSubmissionUpdate($event)" [allowUpdate]="allowSubmissions" [taskId]="task.id" [submission]="userSubmission"></app-user-submission-view>
+</div>

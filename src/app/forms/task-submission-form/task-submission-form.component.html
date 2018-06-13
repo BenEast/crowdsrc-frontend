@@ -1,0 +1,32 @@
+<div class="container" id="submission-form">
+  <div class="no-pad container form-group">
+    <div class="no-pad text-center pull-right">
+      <label class="btn btn-secondary pull-right">
+        <span class="far fa-upload fa-fw"></span>&nbsp;Choose files
+        <input id="add-file" (change)="onFileChange($event)" type="file" class="hidden" multiple>
+      </label>
+      <small class="help-block">Max file size is 5 MB</small>
+    </div>
+    <br>
+    <br>
+    <button *ngIf="files.length" class="btn btn-primary pull-right" type="button" (click)="submit()">
+      <span class="fas fa-check fa-fw"></span>&nbsp;Upload
+    </button>
+  </div>
+  <div class="container" id="files-wrapper" *ngIf="files.length">
+    <div class="row" *ngFor="let file of files; let i = index">
+      <div class="col-xs-10 col-xs-push-1 col-sm-6 col-sm-push-3 text-center">{{file.filename}}</div>
+      <div class="col-xs-1 col-sm-push-3 col-md-push-2">
+        <button type="close" class="close" (click)="removeFile(i)">&times;</button>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-success" *ngIf="success">
+    <div class="text-center panel-heading">Your submission was uploaded successfully.</div>
+  </div>
+  <div class="panel panel-danger" *ngIf="failure">
+    <div class="text-center panel-heading">There was an error uploading your submission.
+      <br> Please try again later.
+    </div>
+  </div>
+</div>

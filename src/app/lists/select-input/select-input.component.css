@@ -1,0 +1,6 @@
+.form-control {
+    display: inline-block;
+    width: 130px;
+    margin: 0;
+    border-radius: 50px;
+}

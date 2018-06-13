@@ -1,0 +1,53 @@
+<app-content-badge [allowClick]="true" [content]="skill.name" [showDelete]="editMode" (onClick)="onBadgeClick()" (onDelete)="removeSkill()"></app-content-badge>
+<div *ngIf="skill" class="modal fade" role="dialog" id="skillModal{{index}}" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title text-center">
+          <span class="badge badge-default">
+            <span class="fas fa-users fa-fw">&nbsp;{{skillData?.user_count}}</span>&nbsp;&nbsp;&nbsp;
+            <span class="far fa-tasks fa-fw">&nbsp;{{skillData?.task_count}}</span>&nbsp;&nbsp;&nbsp;
+            <span class="far fa-file-alt fa-fw">&nbsp;{{skillData?.project_count}}</span>&nbsp;&nbsp;
+          </span>
+          {{skill.name | capitalize}}
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="container" *ngIf="skillData">
+          <div class="content-section">
+            <div class="content-header wide">
+              <h4 class="text-muted">
+                <span class="far fa-file-alt fa-fw"></span>&nbsp;&nbsp;Top 5 Projects
+              </h4>
+            </div>
+            <div class="row text-center" *ngFor="let project of skillData.topProjects">
+              {{project.title}}
+            </div>
+          </div>
+          <div class="content-section">
+            <div class="content-header wide">
+              <h4 class="text-muted">
+                <span class="fas fa-users fa-fw"></span>&nbsp;&nbsp;Top 5 Users
+              </h4>
+            </div>
+            <div class="row text-center">
+              <a class="col-xs-2 point" *ngFor="let user of skillData.top_users" data-dismiss="modal" [routerLink]="['/crowd', user.username]" [queryParams]="{tab: 'details'}">
+                <img class="user-image" [src]="user.image" *ngIf="user.image" />
+                <img class="user-image" *ngIf="!user.image" />
+                <br>{{user.username}}
+              </a>
+            </div>
+          </div>
+        </div>
+        <app-loading *ngIf="!skillData"></app-loading>
+      </div>
+      <div class="modal-footer" *ngIf="currentUser && skillData">
+        <button type="button" class="center-block btn btn-primary" *ngIf="!skillData.user_has_skill" (click)="addUserSkill()">Add this skill to your profile</button>
+        <button type="button" class="center-block btn btn-danger" *ngIf="skillData.user_has_skill" data-dismiss="modal" (click)="removeUserSkill()">Remove this skill from your profile</button>
+      </div>
+    </div>
+  </div>
+</div>

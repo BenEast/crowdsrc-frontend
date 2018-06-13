@@ -1,0 +1,9 @@
+#form-barrier {
+    border-color: var(--mid-gray);
+}
+.btn-wrapper {
+    margin: 15px auto;
+}
+.visible {
+    margin-top: 70px;
+}

@@ -1,0 +1,16 @@
+<div class="row center-block content-wrapper">
+  <div class="user-image-md" *ngIf="!user.image"></div>
+  <a class="user-image-md point" *ngIf="user.image" [routerLink]="['/crowd/', user.username]" [queryParams]="{tab: 'details'}">
+    <img class="user-image-md" [src]="user.image">
+  </a>
+  <div class="info pull-right">
+    <div class="upper">
+      <a class="point ease-io username" [routerLink]="['/crowd/', user.username]" [queryParams]="{tab: 'details'}">{{user.username}}</a>
+      <span class="pull-right">
+        <span class="fal fa-globe fa-lg"></span> {{user.location | capitalize}}
+      </span>
+    </div>
+    <small>{{user.first_name | capitalize}} {{user.last_name | capitalize}}</small>
+    <app-crowd-request-form *ngIf="currentUser && currentUser?.id != user.id" class="pull-right" [inCrowd]="user.in_crowd" [receiverUsername]="user.username"></app-crowd-request-form>
+  </div>
+</div>

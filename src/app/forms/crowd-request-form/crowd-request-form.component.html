@@ -1,0 +1,18 @@
+<div class="container no-pad">
+    <span class="point ease-io" *ngIf="!inCrowd" (click)="sendRequest()" title="Add to your crowd">
+        <span class="far fa-user-plus"></span>
+    </span>
+    <span class="point ease-io" *ngIf="inCrowd" (click)="toggleConfirm(true)" title="Remove from your crowd">
+        <span class="far fa-user-times"></span>
+    </span>
+    <small *ngIf="inCrowd" class="hidden row center-block wide text-center text-muted" id="removeConfirm{{receiverUsername}}">
+        Remove from your crowd?
+        <div class="row center-block">
+            <div class="pull-right">
+                <a class="point" (click)="toggleConfirm(false)">Cancel</a>
+                <div class="sep"></div>
+                <a class="remove point ease-io-fast" (click)="removeUser()">Remove</a>
+            </div>
+        </div>
+    </small>
+</div>

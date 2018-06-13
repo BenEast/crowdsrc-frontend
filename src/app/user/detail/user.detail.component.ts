@@ -1,9 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { AuthenticationService } from '../../services/authentication.service';
-import { SharedService } from '../../services/shared.service';
-import { User } from '../../models/user';
-import { Project } from '../../models/project';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ImageService } from 'app/services/image.service';
+import { User } from 'app/models/user';
+import { AuthenticationService } from 'app/services/authentication.service';
+import { UserService } from 'app/services/user.service';
+import { faPencil, faFileAlt, faChartLine, faTasks, faUsers, faIdCard } from '@fortawesome/fontawesome-pro-regular';
+import fontawesome from '@fortawesome/fontawesome';
+
+fontawesome.library.add(faPencil);
+fontawesome.library.add(faFileAlt);
+fontawesome.library.add(faChartLine);
+fontawesome.library.add(faTasks);
+fontawesome.library.add(faUsers);
+fontawesome.library.add(faIdCard);
+
+declare var $: any;
 
 @Component({
   selector: 'app-user',
@@ -11,58 +22,57 @@ import { Project } from '../../models/project';
   styleUrls: ['./user.detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-  private userId: number;
-  private user: User;
-  private formUser: string;
-  private currentUserId: number;
-  private isAuthenticated: boolean;
+  user: User = new User(-1, '', false);
+  private currentUser: User;
   private currentTab: string;
+  private blocked = false;
 
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(private _activatedRoute: ActivatedRoute,
     private _authService: AuthenticationService,
-    private _router: Router,
-    private _sharedService: SharedService) { }
+    private _imageService: ImageService,
+    private _userService: UserService) {
+  }
 
   ngOnInit() {
-    this.currentTab = 'detail';
-    this.isAuthenticated = this._authService.userIsAuthenticated();
-    if (this.isAuthenticated) {
-      this._authService.getCurrentUserId().subscribe(
-        response => {
-          this.currentUserId = response.json().user_id;
-        },
-        (error: any) => {
-          console.log("Error validating user token");
-          console.log(error);
-        }
-      );
-    }
+    const tabs = ['details', 'stats', 'tasks', 'crowd'];
+    this._activatedRoute.queryParams.subscribe(params => {
+      let tab_param = params['tab'];
+      if (tab_param) { tab_param = tab_param.toLowerCase(); }
+      this.currentTab = tabs.includes(tab_param) ? tab_param : 'details';
+    });
 
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.userId = params['id'];
-      this.getUser();
+    this._activatedRoute.params.subscribe((params: Params) => {
+      const username = params['username'];
+
+      if (username !== this.user.username) {
+        this.user = new User(-1, '', false);
+        this._authService.getCurrentUser().subscribe(user => {
+          this.currentUser = user;
+          this.getUser(username);
+        });
+      }
     });
   }
 
-  private routeTo(path: string) {
-    this._router.navigateByUrl(path);
+  private onImageUpload(image) {
+    this.user.image = image;
+    this.currentUser.image = image;
+    $('#userImageModal').modal('hide'); // Dismiss the image modal
   }
 
-  private onUpdate($event) {
-    this.user = JSON.parse($event);
-    this.getUser();
-  }
-
-  private getUser() {
-    this._sharedService.getUser(this.userId)
-      .subscribe(
+  private getUser(username: string) {
+    this._userService.getUser(username).subscribe(
       user => {
         this.user = user;
-        this.formUser = JSON.stringify(user);
+        this.getUserImage(this.user.username);
       },
       error => {
-        console.log("Error with user detail component");
-        console.log(error);
-      });
+        if (error === 'blocked') { this.blocked = true; }
+      }
+    );
+  }
+
+  private getUserImage(username: string) {
+    this._imageService.getUserImage(username).subscribe(image => this.user.image = image);
   }
 }

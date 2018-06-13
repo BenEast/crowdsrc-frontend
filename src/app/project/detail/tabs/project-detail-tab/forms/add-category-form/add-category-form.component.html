@@ -1,0 +1,10 @@
+<div class="row center-block content-wrapper">
+  <div class="col-xs-9 no-pad">
+    <input type="text" class="form-control pull-right" name="addCategory" (keydown)="onKeyDown($event)" [(ngModel)]="category_name" placeholder="Enter a category">
+  </div>
+  <div class="col-xs-3 no-pad">
+    <button type="button" class="pull-left btn btn-primary" (click)="submitCategory()">
+      <span class="fas fa-plus"></span>
+    </button>
+  </div>
+</div>

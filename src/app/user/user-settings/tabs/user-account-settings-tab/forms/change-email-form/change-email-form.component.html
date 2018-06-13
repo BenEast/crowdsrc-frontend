@@ -1,0 +1,17 @@
+<div class="center-block" id="update-email-form">
+  <div class="hidden text-center" id="email-success-dialog" *ngIf="success">
+    <small>A verification email has been sent to your new email address.</small>
+  </div>
+  <div class="hidden text-center" id="email-error-dialog" *ngIf="error">
+    <small>There was an error processing your request. Please try again.</small>
+  </div>
+  <label for="updateEmailInput">New email</label>
+  <input class="form-control" type="email" placeholder="Enter a new email address" name="updateEmailInput" [(ngModel)]="email">
+  <small class="help-block">You must verify this email before we update your account.</small>
+  <label for="enterPassword">Password</label>
+  <input class="form-control" type="password" placeholder="Enter your password" name="enterPassword" [(ngModel)]="confirmEmailPassword">
+  <small class="help-block">Enter your current password to confirm the change.</small>
+  <div class="btn-wrapper pull-right">
+    <button type="button" class="btn btn-primary" (click)="updateEmail()" [disabled]="!email || !confirmEmailPassword">Update</button>
+  </div>
+</div>

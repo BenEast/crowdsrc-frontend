@@ -1,0 +1,48 @@
+.visible {
+    margin-top: 80px;
+}
+@media (max-width: 767px) {
+    .visible {
+        padding-top: 10px;
+        margin-top: 50px;
+    }
+}
+
+#toggle-advanced {
+    margin: 10px;
+}
+.form-control {
+    width: 100px;
+}
+.form-group {
+    display: inline-block;
+    margin: 10px;
+}
+#page-wrapper {
+    margin-top: 15px;
+    padding-right: 6.5%;
+    display: inline-block;
+}
+.nav-page-wrapper:last-child .spacer {
+    display: none;
+}
+.nav-page, .spacer, .nav-page-wrapper {
+    display: inline-block;
+}
+.selected {
+    color: var(--success-color);
+    text-decoration: underline;
+}
+.spacer {
+    font-weight: 1000;
+}
+.list-container {
+    margin-bottom: 15px;
+}
+.search-header {
+    background: var(--mid-gray);
+    border-radius: 8px;
+    height: 30px;
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--mid-gray);
+}

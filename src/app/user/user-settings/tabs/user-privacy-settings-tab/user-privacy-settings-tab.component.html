@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="form-group">
+    <div class="row form-group-head">
+      <h3>
+        <span class="far fa-search" data-fa-transform="shrink-3 left-3"></span>Search Settings
+        <span *ngIf="!editSearch" (click)="toggleEditSearch()" class="pull-right">
+          <span class="far fa-edit fa-sm point ease-io-fast"></span>
+        </span>
+        <span *ngIf="editSearch" (click)="toggleEditSearch()" class="pull-right">
+          <span class="fas fa-check fa-sm point ease-io-fast"></span>
+        </span>
+      </h3>
+      <small class="help-block head-help">Choose how other users can search for you</small>
+    </div>
+    <app-user-search-settings-form [settings]="settings"></app-user-search-settings-form>
+  </div>
+  <div class="form-group">
+    <div class="row form-group-head">
+      <h3>
+        <span class="far fa-eye fa-fw" data-fa-transform="shrink-3 left-3"></span>Viewing Settings
+        <span *ngIf="!editViewing" (click)="toggleEditView()" class="pull-right">
+          <span class="far fa-edit point fa-sm ease-io-fast"></span>
+        </span>
+        <span *ngIf="editViewing" (click)="toggleEditView()" class="pull-right">
+          <span class="fas fa-check point fa-sm ease-io-fast"></span>
+        </span>
+      </h3>
+      <small class="help-block head-help">Choose who can view your activity and information</small>
+    </div>
+    <app-user-viewing-settings-form [settings]="settings"></app-user-viewing-settings-form>
+  </div>
+  <div class="form-group">
+    <div class="row form-group-head">
+      <h3>
+        <span class="far fa-ban fa-fw" data-fa-transform="shrink-3 left-3"></span>Blocked Users</h3>
+      <small class="help-block head-help">Block users that you don't want to interact with</small>
+    </div>
+    <div class="row center-block" style="border-bottom: none">
+      <app-block-users-form [blocked_users]="settings.blocked_users"></app-block-users-form>
+    </div>
+  </div>
+</div>

@@ -1,66 +1,90 @@
-<div class="container" *ngIf="user">
-    <div class="row">
-        <div class="visible top user-header col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-4 col-lg-push-4">
-            <div class="center-block row content-wrapper">
-                <div class="pull-left col-xs-3">
-                    <p class="center-block image">Image.png</p>
+<div class="container outer" *ngIf="blocked">
+    <div class="visible top text-center">
+        You have been blocked by this user!
+        <br> You cannot view this profile while they are blocking you.
+        <br>
+        <br>
+    </div>
+</div>
+<div class="container outer" *ngIf="!blocked">
+    <!-- Start user header block -->
+    <div class="visible top">
+        <div class="center-block row upper">
+            <div class="pull-left no-pad" id="image-wrapper">
+                <img *ngIf="user.image" class="center-block user-image-xl" [src]="user.image" />
+                <div *ngIf="!user.image" class="center-block user-image-xl"></div>
+                <div *ngIf="user.id != -1 && currentUser?.id == user.id" class="edit hidden point" data-toggle="modal" data-target="#userImageModal">
+                    <span class="fa fa-pencil"></span>
                 </div>
-                <h2 class="col-xs-9 col-md-6 username">{{user.username}}
-                    <h4 class="email">{{user.email}}</h4>
-                </h2>
-                <small class="col-xs-9 col-md-6 text-muted">User since: {{user.date_joined | date:'medium'}}
-                    <br> Last login: {{user.last_login | date:'medium'}}</small>
-                <app-update-profile-form *ngIf="currentUserId==userId" user="{{formUser}}" profileId="{{userId}}" (update)="onUpdate($event)"></app-update-profile-form>
+                <!-- Start edit image modal -->
+                <div class="modal fade" id="userImageModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="close" class="btn close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <app-upload-profile-image [username]="user.username" (uploadedImage)="onImageUpload($event)"></app-upload-profile-image>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End edit image modal -->
+            </div>
+            <div class="user-info">
+                <h2 id="username">{{user.username}}</h2>
+                <small class="text-muted">
+                    Joined {{user.date_joined | date:'medium'}}
+                    <br>Last seen {{user.last_login | date:'medium'}}
+                </small>
             </div>
         </div>
-        <div class="visible user-body col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-4 col-lg-push-4">
+        <div class="row center-block content-wrapper" *ngIf="user.id != -1 && currentUser && currentUser?.id != user.id">
+            <app-crowd-request-form class="pull-right" [inCrowd]="user.in_crowd" [receiverUsername]="user.username"></app-crowd-request-form>
+        </div>
+    </div>
+    <!-- End user header block -->
+    <!-- Start main page content block -->
+    <div class="visible user-body">
+        <div class="container no-pad">
+            <!-- Start user navigation tabs -->
             <ul class="nav nav-tabs">
-                <li class="nav-item tab" (click)="currentTab='detail'">
-                    <a class="btn nav-link">
-                        <span class="glyphicon glyphicon-list"></span>
+                <li class="tab" [ngClass]="{'active': currentTab=='details'}">
+                    <a class="btn nav-link ease-io" routerLink="./" [queryParams]="{tab: 'details'}" queryParamsHandling="merge" (click)="currentTab='details'">
+                        <span class="far fa-id-card fa-lg fa-fw"></span>
                         <br>Details
                     </a>
                 </li>
-                <li class="nav-item tab" (click)="currentTab='projects'">
-                    <a class="btn nav-link">
-                        <span class="glyphicon glyphicon-list-alt"></span>
-                        <br>Projects
+                <li class="tab" *ngIf="user.show_crowd" [ngClass]="{'active': currentTab=='crowd'}">
+                    <a class="btn nav-link ease-io text-center" routerLink="./" [queryParams]="{tab: 'crowd'}" queryParamsHandling="merge" (click)="currentTab='crowd'">
+                        <span class="far fa-users fa-lg fa-fw"></span>
+                        <br>Crowd
                     </a>
                 </li>
-                <li class="nav-item tab" (click)="currentTab='teams'">
-                    <a class="btn nav-link">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <br>Teams
+                <li class="tab" *ngIf="user.show_stats" [ngClass]="{'active': currentTab=='stats'}">
+                    <a class="btn nav-link ease-io" routerLink="./" [queryParams]="{tab: 'stats'}" queryParamsHandling="merge" (click)="currentTab='stats'">
+                        <span class="far fa-chart-line fa-lg fa-fw"></span>
+                        <br>Stats
+                    </a>
+                </li>
+                <li class="tab" *ngIf="currentUser?.id == user.id" [ngClass]="{'active': currentTab=='tasks'}">
+                    <a class="btn nav-link ease-io" routerLink="./" [queryParams]="{tab: 'tasks'}" queryParamsHandling="merge" (click)="currentTab='tasks'">
+                        <span class="far fa-tasks fa-lg fa-fw"></span>
+                        <br>Tasks
                     </a>
                 </li>
             </ul>
-            <div *ngIf="currentTab=='detail'">
-                <div class="row center-block content-wrapper">
-                    <p>Name: {{user.name}}</p>
-                    <p>Location: {{user.location}}</p>
-                    <p>Birthday: {{user.birth_date | date:'longDate'}}</p>
-                    <p>Bio: {{user.bio}}</p>
-                </div>
-                <div class="row center-block content-wrapper user-stats">
-                    <p>USER CONTRIBUTION STATS</p>
-                    <!-- Show user contribution stats, badges, etc -->
-                </div>
+            <!-- End user navigation tabs -->
+            <!-- Start main body content -->
+            <div class="center-block content-wrapper">
+                <app-loading *ngIf="user.id == -1"></app-loading>
+                <app-user-detail-tab *ngIf="user.id != -1 && currentTab=='details'" [user]="user"></app-user-detail-tab>
+                <app-user-crowd-tab *ngIf="user.show_crowd && currentTab=='crowd'" [user]="user"></app-user-crowd-tab>
+                <app-user-stats-tab *ngIf="user.show_stats && user.id != -1 && currentTab=='stats'" [user]="user"></app-user-stats-tab>
+                <app-user-tasks-tab *ngIf="currentUser?.id == user.id && currentTab=='tasks'" [user]="user"></app-user-tasks-tab>
             </div>
-            <div *ngIf="currentTab=='projects'">
-                <div class="row center-block content-wrapper project" *ngFor="let project of user.projects" (click)="routeTo('/projects/' + project.id)">
-                    <h3 class="project-title">{{project.title}}
-                        <span class="pull-right badge badge-default">
-                            <span class="glyphicon glyphicon-user"></span>&nbsp;{{project.team_member_count}}&nbsp;&nbsp;
-                            <span class="glyphicon glyphicon-tasks"></span>&nbsp;{{project.task_count}}
-                        </span>
-                    </h3>
-                    <small class="text-muted">{{project.create_datetime | date:'medium'}}</small>
-                    <p class="short-text">{{project.description}}</p>
-                </div>
-            </div>
-            <div *ngIf="currentTab=='teams'">
-                <p>Info about a user's teams</p>
-            </div>
+            <!-- End main body content -->
         </div>
     </div>
+    <!-- End main page content block -->
 </div>

@@ -1,0 +1,51 @@
+.container {
+    margin: 20px auto 10px auto;
+}
+.form-group {
+    margin-bottom: 30px;
+}
+.text-muted {
+    padding: 5px 2px;
+}
+.middle {
+    margin-top: -1px;
+    position: absolute;
+    left: 50%;
+}
+.middle small {
+    position: relative;
+    right: 50%;
+}
+
+.range-input {
+    -webkit-appearance: none;
+    height: 15px;
+    border-radius: 5px;   
+    background: var(--mid-gray);
+    outline: none;
+}
+.range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: var(--success-color);
+    cursor: pointer;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+}
+.range-input::-webkit-slider-thumb:hover, .range-input::-webkit-slider-thumb:active {
+    box-shadow: 0 0 1px 1px var(--main-color);
+}
+.range-input::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--success-color);
+    cursor: pointer;
+    transition: 0.25s;
+    -moz-transition: 0.25s;
+}
+.range-input::-moz-range-thumb:hover, .range-input::-moz-range-thumb:active {
+    box-shadow: 0 0 1px 1px var(--main-color);
+}

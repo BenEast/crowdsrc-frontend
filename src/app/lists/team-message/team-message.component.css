@@ -1,0 +1,38 @@
+.message {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    border-top: 1px solid var(--mid-gray);
+}
+.message:first-child {
+    padding-top: 10px;
+    border: none;
+}
+.message:last-child {
+    padding-bottom: 0;
+}
+.message-username {
+    color: var(--main-color);
+    display: inline-block;
+}
+.modal {
+    margin-top: 100px;
+}
+.fas {
+    margin: 2px;
+}
+.fa-check {
+    color: var(--success-color);
+}
+.fa-ban, .fa-times {
+    color: var(--danger-color);
+}
+.message-body, textarea {
+    margin-top: 10px;
+}
+textarea {
+    font-size: inherit;
+}
+.reply-wrapper {
+    margin-left: 5px;
+    display: inline-block;
+}

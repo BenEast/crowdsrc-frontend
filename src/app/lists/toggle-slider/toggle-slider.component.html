@@ -1,0 +1,4 @@
+<label class="switch" [ngClass]="{'point': !disabled}">
+  <input class="hidden" type="checkbox" (click)="toggle.emit()" [(ngModel)]="value" name="toggleSlider" [disabled]="disabled">
+  <span class="slider round"></span>
+</label>

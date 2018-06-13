@@ -1,0 +1,6 @@
+<div class="text-center no-pad">
+  <a class="user-image-sm" [routerLink]="['/crowd/', user.username]" [queryParams]="{tab: 'details'}">
+    <img class="user-image-sm" [src]="user.image" [ngClass]="{'invis': !user.image}">
+  </a>
+  <a class="row center-block" [routerLink]="['/crowd/', user.username]" [queryParams]="{tab: 'details'}">{{user.username}}</a>
+</div>

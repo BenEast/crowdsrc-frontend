@@ -1,8 +1,21 @@
-.form-toggle {
-    transition-duration: 0.3s !important;
-    -moz-transition-duration: 0.3s !important;
-    -webkit-transition-duration: 0.3s !important;
-}
 .form-toggle:hover {
-    color: var(--main-color) !important;
+    color: var(--main-color);
+}
+#changed-password-dialog {
+    margin: 10px auto;
+}
+#logo-wrapper {
+    padding: 10px 30%;
+}
+.visible {
+    margin-top: 80px;
+}
+@media (max-width: 767px) {
+    .visible {
+        margin-top: 50px;
+        padding-top: 10px;
+    }
+    #logo-wrapper {
+        padding: 10px 20%;
+    }
 }

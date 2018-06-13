@@ -1,0 +1,18 @@
+<div class="container outer">
+  <div class="visible top">
+    <div class="container no-pad">
+      <!-- Display task list entry -->
+      <div class="center-block content-wrapper">
+        <app-task-list-entry *ngIf="task" [task]="task" [showSubmissionView]="false"></app-task-list-entry>
+      </div>
+      <!-- Display submission info -->
+      <div class="center-block content-wrapper">
+        <app-submission-list-entry *ngIf="submission && task" [allowUpdate]="false" [submission]="submission" [taskId]="task.id"></app-submission-list-entry>
+      </div>
+    </div>
+  </div>
+  <div class="visible">
+    <app-loading *ngIf="!submission || !task"></app-loading>
+    <app-review-submission-form *ngIf="submission && task" [submissionId]="submission.id" [taskSkills]="task.skills"></app-review-submission-form>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.badge>div {
+    display: inline-block;
+    padding: 2px;
+}
+.fa-times:hover {
+    color: var(--danger-color);
+}
+.skill-hover:hover {
+    background-color: var(--mid-gray);
+    color: var(--dark-gray);
+}

@@ -1,0 +1,63 @@
+/*
+  https://www.w3schools.com/howto/howto_css_switch.asp
+  The switch - the box around the slider
+*/
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 20px;
+	margin-bottom: 0;
+}
+
+/* The slider */
+.slider {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: var(--mid-gray);
+
+	transition: .25s;
+	-moz-transition: .25s;
+	-webkit-transition: .25s;
+}
+  
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 14px;
+	width: 15px;
+	left: 5px;
+	bottom: 3px;
+	background-color: var(--light-color);
+	
+	transition: .25s;
+	-moz-transition: .25s;
+	-webkit-transition: .25s;
+}
+  
+input:checked + .slider {
+	background-color: var(--light-accent-color);
+}
+input:focus + .slider {
+	box-shadow: 0 0 1px var(--light-accent-color);
+}
+input:checked[disabled] + .slider {
+	background-color: var(--mid-gray);
+}
+  
+input:checked + .slider:before {
+	transform: translateX(25px);
+	-moz-transform: translateX(25px);
+	-webkit-transform: translateX(25px);
+}
+  
+/* Rounded sliders */
+.slider.round {
+	border-radius: 20px;
+}
+.slider.round:before {
+	border-radius: 50%;
+}

@@ -1,15 +1,9 @@
-.task {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--mid-gray);
+.modal-header {
+    padding-bottom: 0;
 }
-.task:first-child {
+.modal-body {
     padding-top: 0;
 }
-.task:last-child {
-    border: none;
-}
-.task-upper {
-    margin: 10px auto;
-    color: var(--main-color);
+.col-xs-12 {
+    padding: auto 0;
 }

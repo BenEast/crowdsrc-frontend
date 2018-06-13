@@ -1,0 +1,25 @@
+.text-center {
+    margin: 40px 30px 30px;
+}
+.fa-xs {
+    color: var(--dark-accent-color);
+    animation: spin-reverse 1.5s infinite linear;
+}
+.fa-sm {
+    color: var(--main-color);
+}
+#spin-3 {
+    color: var(--light-accent-color);
+    animation: spin-reverse 2s infinite linear;
+}
+.fa-lg {
+    color: var(--main-color);
+}
+@keyframes spin-reverse {
+    0% {
+      transform: scaleX(-1) rotate(-360deg);
+    }
+    100% {
+      transform: scaleX(-1) rotate(0deg);
+    }
+}

@@ -1,0 +1,15 @@
+.submission-icon {
+    color: var(--success-color);
+}
+.no-pad {
+    display: inline-block;
+}
+.form-group {
+    margin-top: 10px;
+}
+label, input, .help-block {
+    margin: 0;
+}
+.fa-square:hover, .fa-check-square:hover {
+    color: var(--success-color);
+}

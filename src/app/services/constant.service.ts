@@ -2,62 +2,86 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ConstantService {
+  private baseUrl = 'http://localhost:8000';
+  private usersUrl = this.baseUrl + '/users/';
+  private commentsUrl = this.baseUrl + '/comments/';
+  private projectsUrl = this.baseUrl + '/projects/';
+  private skillsUrl = this.baseUrl + '/skills/';
+  private contactUrl = this.baseUrl + '/contact/';
+  private tasksUrl = this.baseUrl + '/tasks/';
+  private taskMembersUrl = this.baseUrl + '/task-members/';
+  private teamMessagesUrl = this.baseUrl + '/team-messages/';
+  private authenticationUrl = this.baseUrl + '/authenticate/';
+  private refreshUrl = this.baseUrl + '/refresh-token/';
+  private submissionsUrl = this.baseUrl + '/submissions/';
+  private reviewsUrl = this.baseUrl + '/reviews/';
+  private suggestionsUrl = this.baseUrl + '/suggest/';
+  private settingsUrl = this.baseUrl + '/settings/';
+  private crowdUrl = this.baseUrl + '/crowd/';
+
   constructor() { }
 
-  private baseUrl = "http://localhost:8000";
-  private usersUrl = this.baseUrl + "/users/";
-  private commentsUrl = this.baseUrl + "/comments/";
-  private profilesUrl = this.baseUrl + "/profiles/";
-  private projectsUrl = this.baseUrl + "/projects/";
-  private contactUrl = this.baseUrl + "/contact/";
-  private tasksUrl = this.baseUrl + "/tasks/";
-  private teamMembersUrl = this.baseUrl + "/team-members/";
-  private teamMessagesUrl = this.baseUrl + "/team-messages/";
-  private authenticationUrl = 'http://localhost:8000/authenticate/'
-  private validateTokenUrl = 'http://localhost:8000/validate-token/'
-
-  getBaseUrl() {
+  getBaseUrl(): string {
     return this.baseUrl;
   }
 
-  getUsersUrl() {
+  getCrowdUrl(): string {
+    return this.crowdUrl;
+  }
+
+  getUsersUrl(): string {
     return this.usersUrl;
   }
 
-  getCommentsUrl() {
+  getCommentsUrl(): string {
     return this.commentsUrl;
   }
 
-  getProfilesUrl() {
-    return this.profilesUrl;
-  }
-
-  getProjectsUrl() {
+  getProjectsUrl(): string {
     return this.projectsUrl;
   }
 
-  getContactUrl() {
+  getSkillsUrl(): string {
+    return this.skillsUrl;
+  }
+
+  getContactUrl(): string {
     return this.contactUrl;
   }
 
-  getTasksUrl() {
+  getSubmissionsUrl(): string {
+    return this.submissionsUrl;
+  }
+
+  getTasksUrl(): string {
     return this.tasksUrl;
   }
 
-  getTeamMembersUrl() {
-    return this.teamMembersUrl;
+  getTaskMembersUrl(): string {
+    return this.taskMembersUrl;
   }
 
-  getTeamMessagesUrl() {
+  getTeamMessagesUrl(): string {
     return this.teamMessagesUrl;
   }
 
-  getAuthenticationUrl() {
+  getAuthenticationUrl(): string {
     return this.authenticationUrl;
   }
 
-  getValidationUrl() {
-    return this.validateTokenUrl;
+  getRefreshUrl(): string {
+    return this.refreshUrl;
+  }
+
+  getReviewsUrl(): string {
+    return this.reviewsUrl;
+  }
+
+  getSuggestionsUrl(): string {
+    return this.suggestionsUrl;
+  }
+
+  getSettingsUrl(): string {
+    return this.settingsUrl;
   }
 }
-

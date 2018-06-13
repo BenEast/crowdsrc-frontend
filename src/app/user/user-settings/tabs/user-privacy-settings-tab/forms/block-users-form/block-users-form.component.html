@@ -1,0 +1,24 @@
+<div class="container">
+  <label for="blockUserInput">Block users</label>
+  <div class="row center-block input-group">
+    <input (keydown)="keyDownFunction($event)" type="text" name="blockUserInput" class="form-control" [(ngModel)]="target" placeholder="Enter a username">
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-danger" (click)="submitForm()">Block</button>
+    </span>
+  </div>
+  <small class="help-block">These users can't view your comments, profile, or other activity.</small>
+  <span class="fal fa-user-times"></span>
+  <a class="point text-muted" data-toggle="collapse" data-target="#blocked-user-list">
+    {{blocked_users.length}} blocked {{blocked_users.length == 1 ? 'user' : 'users'}}
+  </a>
+  <div class="collapse" id="blocked-user-list">
+    <div class="row center-block" *ngFor="let entry of blocked_users; let i = index">
+      <div class="col">
+        {{entry.target.username}}
+        <span (click)="unblockUser(i)" class="pull-right">
+          <span class="fas fa-times point ease-io-fast"></span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

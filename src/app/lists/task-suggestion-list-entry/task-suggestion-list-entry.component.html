@@ -1,0 +1,18 @@
+<div class="container no-pad">
+  <div class="row center-block">
+    <div class="ellipsis">
+      <a (click)="dismiss.emit()" [routerLink]="['/src/', taskSuggestion.project_id]" [queryParams]="{tab: 'tasks'}">{{taskSuggestion.title | capitalize}}titletitletitle</a>
+    </div>
+    <button type="close" class="close" (click)="dismiss.emit()">&times;</button>
+  </div>
+  <div class="row center-block">
+    <small id="status">{{taskSuggestion.status | capitalize}}</small>
+    <br>
+    <div id="skill-wrapper">
+      <app-skill-detail *ngFor="let skill of taskSuggestion.shared_skills; let i = index" [skill]="skill.skill" [index]="i"></app-skill-detail>
+    </div>
+    <div class="ellipsis">
+      <small>{{taskSuggestion.description}}</small>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+h4 {
+    margin: 0 auto;
+}
+.row {
+    border-bottom: 1px solid var(--light-gray);
+    margin-bottom: 10px;
+}
+.help-block {
+    font-size: 14px;
+}
+.view-head {
+    display: inline-block;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    app-select-input {
+        position: absolute;
+        right: 40px;
+    }
+}
+@media (min-width: 500px) and (max-width: 767px) {
+    app-select-input {
+        position: absolute;
+        right: 25px;
+    }
+}

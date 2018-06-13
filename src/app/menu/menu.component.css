@@ -1,99 +1,104 @@
 .navbar {
-	background-color: var(--main-color);
-	color: var(--light-color);
-	width: 100%;
-	height: 55px;
-	padding: 0;
-	border: none;
-	border-radius: 0;
+	background: var(--main-color);
 	border-bottom: 3px solid var(--light-accent-color);
-	box-shadow: 0 1px 10px var(--dark-gray);
-	z-index: 999;
+	border-radius: 0;
+	
+	box-shadow: 0 0 7px 0 var(--dark-color);
+	-moz-box-shadow: 0 0 7px 0 var(--dark-color);
+	-webkit-box-shadow: 0 0 7px 0 var(--dark-color);
+}
+.navbar-header {
+	margin-left: 10%;
+}
+.navbar-brand.no-change:hover {
+	cursor: default;
 }
 
-.menu-button {
-	color: inherit;
-	font-size: 20px;
-	transition-duration: 0.25s !important;
-	-moz-transition-duration: 0.25s !important;
-	-webkit-transition-duration: 0.25s !important;
+.logo {
+	padding: 7px;
+	-webkit-filter: invert(100%);
+	filter: invert(100%);
 }
-.menu-button:hover {
+.logo:hover {
+	-webkit-filter: invert(0%);
+	filter: invert(0%);
+}
+
+.navbar-toggle {
+	border: none;
+	padding-bottom: 5px !important;
+	color: var(--light-color);
+}
+.navbar-toggle:hover, .navbar-toggle:focus, .navbar-toggle:active {
+	background: var(--dark-accent-color);
+}
+.navbar-right {
+	margin-right: 10%;
+}
+.navbar-brand.no-change, .navbar-right>li>a:first-child {
+	margin-right: 25px;
+}
+a, .active a:hover {
+	color: var(--light-color) !important;
+}
+a:hover {
+	text-decoration: none !important;
+	background: var(--dark-accent-color) !important;
+}
+.active a {
+	color: var(--dark-accent-color) !important;
+}
+.active a, .active a:hover {
+	background: var(--light-accent-color);
+}
+.no-change:hover {
+	color: var(--light-color) !important;
+	background: inherit !important;
+}
+.fa-layers {
+	position: absolute;
+}
+.fa-layers:hover {
+	color: var(--dark-color);
+}
+.fa-layers:hover>.fa-layers-counter {
+	background: var(--light-accent-color);
 	color: var(--dark-color);
 }
 
-.navbar-form {
-	display: block;
-	width: 250px;
-	margin: 0;
-	padding: 0;
-	border: 1px solid transparent;
-	outline: none;
-	margin-top: 10px;
-}
-.search-button {
-	background-color: var(--light-accent-color);
-	border: none;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-	height: 34px;
-}
-.dropdown-button {
-	border: none;
-	transition-duration: 0.25s !important;
-	-moz-transition-duration: 0.25s !important;
-	-webkit-transition-duration: 0.25s !important;
-}
-.dropdown-button:focus {
-	background-color: var(--main-color) !important;
-	outline: none !important;
-}
-.dropdown-button:active, .dropdown-button:hover, 
-.search-button:active, .search-button:focus {
-	outline: none !important;
-	background-color: var(--light-accent-color) !important;
-}
-.icon-bar {
-	background-color: var(--light-color) !important;
+/* Resizing/spacing changes */
+@media (max-width: 850px) {
+	.navbar-header {
+		margin-left: 5%;
+	}
+	.navbar-right {
+		margin-right: 5%;
+	}
 }
 
-.in {
-	padding: 0 !important;
-	border-top: 0 !important;
-	margin-top: 7px !important;
-	height: auto;
-	display: block;
+/* Styles to get rid of the scroll bars */
+.navbar-collapse.in {
+	height: auto !important;
+	max-height: none !important;
+	overflow: hidden !important;
 }
-.in .collapsed-dropdown {
-	position: absolute !important;
-	background-color: var(--main-color) !important;
-	margin: 0;
+.collapsing {
+	max-height: none !important;
+	overflow: hidden !important;
 }
-.menu-label {
-	display: inline-block;
-}
-.in .nav-item {
-	width: 100%;
-	height: 65px;
-	padding-left: 3%;
-	transition-duration: 0.25s !important;
-	-moz-transition-duration: 0.25s !important;
-	-webkit-transition-duration: 0.25s !important;
-	border-bottom: 3px solid var(--light-accent-color) !important;
-}
-.in .nav-item:hover, .in .nav-item:focus, .in .nav-item:active {
-	background-color: var(--light-accent-color) !important;
-}
-.in .nav .menu-search {
-	padding-top: 5px;
-}
-.in .nav .menu-search:hover {
-	background-color: inherit !important;
-}
-.in .nav .menu-search .navbar-form {
-	width: 100%;
-	box-shadow: none;
-}
-.in .nav .menu-search .navbar-form .form-control {
-	width: 89%;
+
+@media (max-width: 767px) {
+	.navbar-collapse, .navbar-form {
+		border: none !important;
+		box-shadow: none !important;
+	}
+	.navbar-collapse>.navbar-nav {
+		border-top: 3px solid var(--light-accent-color);
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+	}
+	/* Spacing for search bar in dropdown menu */
+	.navbar-form {
+		margin: 0 1px !important;
+	}
 }

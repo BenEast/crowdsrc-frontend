@@ -1,0 +1,38 @@
+<div class="container outer">
+  <div class="visible top">
+    <!-- Start settings navigation tabs -->
+    <ul class="nav nav-tabs">
+      <li class="tab" (click)="currentTab='account'" [ngClass]="{'active': currentTab == 'account'}">
+        <a class="btn nav-link ease-io" routerLink="./" [queryParams]="{tab: 'account'}" queryParamsHandling="merge">
+          <span class="fas fa-user-circle fa-lg fa-fw" data-fa-transform="grow-1 right-2"></span>
+          <br>Account
+        </a>
+      </li>
+      <li class="tab" (click)="currentTab='preferences'" [ngClass]="{'active': currentTab == 'preferences'}">
+        <a class="btn nav-link ease-io" routerLink="./" [queryParams]="{tab: 'preferences'}" queryParamsHandling="merge">
+          <span class="fal fa-sliders-h fa-lg fa-fw" data-fa-transform="grow-2 right-1"></span>
+          <br>Preferences
+        </a>
+      </li>
+      <li class="tab" (click)="currentTab='privacy'" [ngClass]="{'active': currentTab == 'privacy'}">
+        <a class="btn nav-link ease-io" routerLink="./" [queryParams]="{tab: 'privacy'}" queryParamsHandling="merge">
+          <span class="fas fa-user-secret fa-lg fa-fw" data-fa-transform="grow-1 right-2"></span>
+          <br>Privacy
+        </a>
+      </li>
+    </ul>
+    <!-- End settings navigation tabs -->
+  </div>
+  <!-- Start content body -->
+  <div class="visible">
+    <div class="row center-block" *ngIf="!settings">
+      <app-loading></app-loading>
+    </div>
+    <div class="row center-block" *ngIf="settings">
+      <app-user-account-settings-tab id="account-settings-tab" *ngIf="currentTab=='account'"></app-user-account-settings-tab>
+      <app-user-preferences-tab id="preferences-tab" *ngIf="currentTab=='preferences'" [preferences]="settings.preferences"></app-user-preferences-tab>
+      <app-user-privacy-settings-tab id="privacy-settings-tab" *ngIf="currentTab=='privacy'" [settings]="settings.privacy"></app-user-privacy-settings-tab>
+    </div>
+  </div>
+  <!-- End content body -->
+</div>

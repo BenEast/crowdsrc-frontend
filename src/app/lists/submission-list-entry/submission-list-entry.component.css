@@ -1,0 +1,46 @@
+.submission {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid var(--light-gray);
+    border-left: none;
+    border-right: none;
+}
+.submission:hover {
+    border-color: var(--mid-gray);
+}
+.header {
+    margin-bottom: 5px;
+}
+#add-file-wrapper {
+    margin-top: 10px;
+}
+#add-file-wrapper small {
+    padding: 0 auto 5px auto;
+}
+.fa-plus, .fa-upload {
+    margin-left: 5px;
+}
+.fa-plus:hover, .fa-upload:hover {
+    color: var(--success-color);
+}
+.fa-times {
+    position: absolute;
+    right: 22%;
+}
+.fa-times:hover {
+    color: var(--danger-color);
+}
+.fa-trophy {
+    color: gold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+@media (max-width: 500px) {
+    .fa-times {
+        right: 14%;
+    }
+}
+@media (max-width: 380px) {
+    .fa-times {
+        right: 6%;
+    }
+}

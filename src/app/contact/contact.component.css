@@ -1,5 +1,5 @@
-.top {
-    padding-bottom: 20px;
+.visible {
+    margin-top: 70px;
 }
 form {
     padding-top: 20px;
@@ -15,4 +15,11 @@ form {
 }
 .message-title {
     color: var(--main-color);
+}
+
+@media (max-width: 767px) {
+    .visible {
+        margin-top: 50px;
+        padding-top: 10px;
+    }
 }

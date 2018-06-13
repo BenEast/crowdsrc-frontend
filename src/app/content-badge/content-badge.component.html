@@ -1,0 +1,6 @@
+<div class="badge badge-default" [ngClass]="{'point ease-io-fast skill-hover': allowClick}">
+  <div (click)="onClick.emit()">{{content}}</div>
+  <span class="point ease-io-fast" *ngIf="showDelete" (click)="onDelete.emit()">
+    <span class="fas fa-times fa-fw"></span>
+  </span>
+</div>

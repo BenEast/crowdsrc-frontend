@@ -1,0 +1,7 @@
+<div class="container" *ngIf="user.saved_tasks?.length">
+  <app-task-list-entry *ngFor="let task of user.saved_tasks; let i = index" (unsaved)="onUnsave(i)" [task]="task" [index]="i"
+    [allowSubmissions]="true"></app-task-list-entry>
+</div>
+<div class="container" *ngIf="!user.saved_tasks?.length">
+  <div class="text-center" style="padding:30px 20px 20px">You haven't saved any tasks!</div>
+</div>

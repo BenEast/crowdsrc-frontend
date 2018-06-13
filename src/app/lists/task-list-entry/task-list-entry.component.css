@@ -1,0 +1,63 @@
+.task {
+    padding: 10px auto 10px auto;
+    border-top: 1px solid var(--mid-gray);
+    margin-top: 20px;
+}
+.task:first-child {
+    margin-top: auto;
+    padding-top: 0;
+    border: none;
+}
+.task-upper {
+    margin: 10px auto;
+    color: var(--main-color);
+}
+.col-xs-12 {
+    padding: auto 0;
+}
+
+#submissions {
+    font-size: 16px;
+}
+#save {
+    margin-right: 5px;
+}
+
+.fa-check {
+    color: var(--success-color);
+}
+.fa-check, .fa-edit {
+    margin-right: 10px;
+}
+.fa-ban, .fa-times {
+    color: var(--danger-color);
+}
+.title-edit {
+    margin-bottom: 39px;
+}
+.title-edit input {
+    width: 70%;
+}
+.form-control {
+    border-radius: 50px;
+}
+textarea.form-control {
+    border-radius: 7px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 545px), (min-width: 768px) and (max-width: 860px) {
+    .title-edit input, .title-edit select {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}
+
+app-add-skill-form {
+    margin-bottom: 10px;
+}
+@media (max-width: 991px) {
+    app-add-skill-form {
+        width: 109%;
+    }
+}

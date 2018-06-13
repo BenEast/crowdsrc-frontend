@@ -1,53 +1,80 @@
-<div class="container" *ngIf="project">
-    <div class="row">
-        <div class="visible top project-header col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-4 col-lg-push-4">
-            <div class="center-block row content-wrapper">
-                <h2 class="text-center">{{project.title}}</h2>
-                <h4 class="username" (click)="routeTo('/profiles/' + project.user.id)">{{project.user.username}}
-                    <p class="pull-right">
-                        <a href="http://{{project.website}}">{{project.website}}</a>
-                    </p>
-                </h4>
-                <small class="text-muted">Created {{project.create_datetime | date:'medium'}}</small>
-                <div class="pull-right" *ngIf="currentUser && project.user.id==currentUser.id">
-                    <button type="button" class="btn btn-secondary">Edit</button>
+<div class="container outer">
+    <!-- Start project header block -->
+    <div class="visible top">
+        <div class="center-block row content-wrapper">
+            <h2 *ngIf="!edit_mode" class="text-center">{{project.title}}</h2>
+            <input id="title-input" class="text-center form-control" *ngIf="edit_mode" name="editTitle" [(ngModel)]="edit_title" type="text"
+                placeholder="Enter a title">
+            <h4>
+                <a class="username point" [routerLink]="['/crowd/', project.user.username]" [queryParams]="{tab: 'details'}">{{project.user.username}}</a>
+                <div class="pull-right">
+                    <a *ngIf="!edit_mode" href="{{project.website}}">{{project.website}}</a>
+                    <input *ngIf="edit_mode" type="text" class="text-center form-control" name="editWebsite" [(ngModel)]="edit_website" placeholder="Enter a website">
+                </div>
+            </h4>
+            <div class="row">
+                <small class="pull-left text-muted col-xs-10" *ngIf="project.created != ''">Created {{project.created | date:'medium'}}</small>
+                <small class="pull-left text-muted col-xs-10" *ngIf="project.last_updated != ''">Last Updated {{project.last_updated | date:'medium'}}</small>
+            </div>
+            <div class="row no-pad" *ngIf="project.top_skills">
+                <div class="pull-left" [ngClass]="{'col-xs-12' : currentUser?.id != project.user.id, 'col-xs-9' : currentUser?.id == project?.user.id }">
+                    <span class="badge badge-info skill-badge noselect" *ngFor="let skill of project.top_skills">
+                        {{skill[1]}}
+                        <span class="fas fa-star"></span>
+                        &nbsp;&nbsp;{{skill[0]}}
+                    </span>
+                </div>
+                <div *ngIf="currentUser?.id == project.user.id" class="col-xs-3">
+                    <span class="pull-right" *ngIf="!edit_mode" (click)="edit_mode = true">
+                        <span class="point ease-io far fa-edit"></span>
+                    </span>
+                    <span class="pull-right" *ngIf="edit_mode" (click)="updateProject()">
+                        <span class="point ease-io fas fa-check"></span>
+                    </span>
+                    <span class="pull-right" *ngIf="edit_mode" (click)="onEditCancel()">
+                        <span class="point ease-io fas fa-ban"></span>
+                    </span>
                 </div>
             </div>
         </div>
-        <div class="visible col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-4 col-lg-push-4">
-            <ul class="nav nav-tabs">
-                <li class="nav-item tab" (click)="currentTab='detail'">
-                    <a class="btn nav-link">
-                        <span class="glyphicon glyphicon-list"></span>
-                        <br>Details
-                    </a>
-                </li>
-                <li class="nav-item tab" (click)="currentTab='tasks'">
-                    <a class="btn nav-link">
-                        <span class="glyphicon glyphicon-tasks"></span>
-                        <br>Tasks
-                    </a>
-                </li>
-                <li class="nav-item tab" (click)="currentTab='stats'">
-                    <a class="btn nav-link">
-                        <span class="glyphicon glyphicon-stats"></span>
-                        <br>Stats
-                    </a>
-                </li>
-                <li class="badge badge-default pull-right">
-                    <span class="glyphicon glyphicon-user"></span>&nbsp;{{project.team_member_count}}&nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-tasks"></span>&nbsp;{{project.task_count}}
-                </li>
-            </ul>
-            <div class="center-block content-wrapper" *ngIf="currentTab=='detail'">
-                <app-project-detail-tab [project]="project" (refreshProject)="getProject()">Loading details...</app-project-detail-tab>
-            </div>
-            <div class="center-block content-wrapper" *ngIf="currentTab=='tasks'">
-                <app-project-task-tab [tasks]="project.tasks">Loading tasks...</app-project-task-tab>
-            </div>
-            <div class="center-block content-wrapper" *ngIf="currentTab=='stats'">
-                <app-project-stats-tab>Loading stats...</app-project-stats-tab>
-            </div>
-        </div>
     </div>
+    <!-- End project header block -->
+    <!-- Start main page content block -->
+    <div class="visible">
+        <!-- Start project navigation tabs -->
+        <ul class="nav nav-tabs">
+            <li class="tab" [ngClass]="{'active': currentTab=='project'}">
+                <a class="btn nav-link ease-io" routerLink="./" [queryParams]="{tab: 'project'}" (click)="currentTab='project'">
+                    <span class="far fa-file-alt"></span>
+                    <br>Project
+                </a>
+            </li>
+            <li class="tab" [ngClass]="{'active': currentTab=='tasks'}">
+                <a class="btn nav-link ease-io" routerLink="./" [queryParams]="{tab: 'tasks'}" (click)="currentTab='tasks'">
+                    <span class="far fa-tasks"></span>
+                    <br>Tasks
+                </a>
+            </li>
+            <li class="tab" [ngClass]="{'active': currentTab=='stats'}">
+                <a class="btn nav-link ease-io" routerLink="./" [queryParams]="{tab: 'stats'}" (click)="currentTab='stats'">
+                    <span class="far fa-chart-line"></span>
+                    <br>Stats
+                </a>
+            </li>
+            <li class="pull-right" id="badge-wrapper" *ngIf="project.id != -1">
+                <app-project-badge [message_count]="project.message_count" [task_count]="project.task_count"></app-project-badge>
+            </li>
+        </ul>
+        <!-- End project navigation tabs -->
+        <!-- Start body content -->
+        <div class="center-block content-wrapper">
+            <app-loading *ngIf="project.id == -1"></app-loading>
+            <app-project-detail-tab *ngIf="project.id != -1 && currentTab=='project'" [edit_mode]="edit_mode" [project]="project"></app-project-detail-tab>
+            <app-project-task-tab *ngIf="project.id != -1 && currentTab=='tasks'" (addedSkill)="onAddSkill($event)" (removedSkill)="onDeleteSkill($event)"
+                [project]="project"></app-project-task-tab>
+            <app-project-stats-tab *ngIf="project.id != -1 && currentTab=='stats'"></app-project-stats-tab>
+        </div>
+        <!-- End body content -->
+    </div>
+    <!-- End main page content block -->
 </div>

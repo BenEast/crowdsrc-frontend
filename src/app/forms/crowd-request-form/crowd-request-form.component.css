@@ -1,0 +1,23 @@
+.fa-user-plus:hover {
+    color: var(--main-color);
+}
+.fa-user-times:hover, .remove:hover {
+    color: var(--danger-color);
+}
+small {
+    font-size: 13px;
+}
+a {
+    color: inherit;
+    display: inline-block;
+}
+.container {
+    display: inline-block;
+}
+.sep {
+    display: inline-block;
+    border-left: 1px solid;
+    border-color: inherit;
+    height: 20px;
+    margin-bottom: -5px !important;
+}

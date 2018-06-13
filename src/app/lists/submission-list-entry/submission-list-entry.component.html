@@ -1,0 +1,42 @@
+<div class="row center-block">
+  <div class="submission ease-io">
+    <span *ngIf="submission.is_accepted" class="pull-left">
+      <span class="fas fa-trophy"></span>
+    </span>
+    <button *ngIf="!submission.is_accepted && submission.user_id && currentUser?.id == submission.user_id" type="close" class="close"
+      (click)="deleteSubmission()">&times;</button>
+    <div class="text-center header">
+      Submission updated {{submission.last_updated | date: 'medium'}} {{submission.files.length}} {{submission.files.length ===
+      1 ? 'file' : 'files'}}
+    </div>
+    <div class="container">
+      <div class="row center-block text-center" *ngFor="let file of submission.files; let i = index">
+        <a class="point">{{file.filename}}</a>
+        &nbsp;&nbsp;{{file.size | fileSize}}
+        <span class="point ease-io-fast" *ngIf="!submission.is_accepted && allowUpdate && currentUser?.id == submission.user_id"
+          (click)="deleteSubmissionFile(i)">
+          <span class="fas fa-times"></span>
+        </span>
+      </div>
+    </div>
+    <div *ngIf="!submission.is_accepted && allowUpdate && currentUser?.id == submission.user_id" class="row text-center" id="add-file-wrapper">
+      <small class="text-muted">Submit more content</small>
+      <label class="fas fa-plus point ease-io-fast">
+        <input id="add-file" (change)="onFileChange($event)" type="file" class="hidden" multiple>
+      </label>
+      <span *ngIf="files.length" class="point ease-io-fast" (click)="submitNewFiles()">
+        <span class="far fa-upload fa-fw"></span>
+      </span>
+      <small class="help-block">Max file size is 5 MB</small>
+      <div class="container no-pad" *ngIf="files.length">
+        <div class="row center-block text-center" *ngFor="let file of files; let i = index">
+          <a class="point">{{file.filename}}</a>
+          &nbsp;&nbsp;{{file.size | fileSize}}
+          <span class="point ease-io-fast" (click)="deleteAddSubmissionFile(i)">
+            <span class="fas fa-times"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

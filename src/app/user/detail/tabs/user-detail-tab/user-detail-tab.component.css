@@ -1,0 +1,84 @@
+.content-section {
+    padding: 10px 0 10px 0;
+}
+.content-section:first-child {
+    border-top: none;
+    padding-top: 0px;
+}
+.content-section:last-child {
+    padding-bottom: 0;
+}
+.content-section, .user-stats {
+    border-top: 1px solid var(--mid-gray);
+}
+.content-header {
+    height: 35px;
+    padding-bottom: 5px;
+    margin: 0 auto;
+}
+.fa-times {
+    margin-right: 10px;
+}
+.fa-edit:hover {
+    color: var(--dark-color);
+}
+.fa-check:hover {
+    color: var(--success-color);
+}
+.fa-times:hover {
+    color: var(--danger-color);
+}
+/* About section */
+.help-block {
+    margin-top: -10px;
+}
+.form-control {
+    width: 70%;
+    height: 35px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 7px;
+    font-size: 1em;
+}
+.form-control[type="date"] {
+    width: 200px;
+}
+textarea.form-control {
+    border-radius: 7px;
+    height: auto;
+}
+.inline-label {
+    text-align: left;
+}
+.inline-label .form-control {
+    width: 65% !important;
+}
+.push-down {
+    display: inline-block;
+    padding-top: 6px;
+}
+/* Skills section */
+.badge-container {
+    padding-bottom: 10px;
+}
+@media (max-width: 400px) {
+    .skill-form {
+        margin-left: 1.25%;
+    }
+}
+@media (max-width: 450px) {
+    .skill-form {
+        margin-left: 2.5%;
+    }
+}
+@media (max-width: 600px) {
+    .skill-form {
+        margin-left: 3.5%;
+    }
+}
+@media (max-width: 767px) {
+    .skill-form {
+        margin: 10px auto;
+        margin-left: 4.25%;
+    }
+}

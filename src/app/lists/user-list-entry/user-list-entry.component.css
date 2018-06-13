@@ -1,0 +1,24 @@
+.username {
+    color: inherit;
+    display: inline-block;
+    padding: auto 5px;
+    font-weight: 600;
+}
+.username:hover {
+    color: var(--main-color);
+}
+.col-xs-3, .info {
+    padding-left: 0;
+    padding-right: 0;
+}
+.info {
+    width: calc(100% - 115px);
+}
+.upper {
+    border-bottom: 1px solid var(--light-gray);
+}
+.row {
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--mid-gray);
+    padding-bottom: 20px;
+}

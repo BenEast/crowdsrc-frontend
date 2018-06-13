@@ -1,0 +1,26 @@
+#delete-account-group {
+    padding: 10px;
+}
+#delete-error-dialog {
+    color: var(--danger-color);
+    margin-bottom: 10px;
+}
+.help-block {
+    font-size: 14px;
+}
+textarea {
+    margin-bottom: 15px;
+}
+@media (min-width: 450px) {
+    #delete-confirm-wrapper>.btn-danger {
+        float: right;
+    }
+    #delete-confirm-wrapper>.btn-success {
+        float: left;
+    }
+}
+@media (max-width: 439px) {
+    #delete-confirm-wrapper>.btn-danger {
+        margin-top: 20px;
+    }
+}

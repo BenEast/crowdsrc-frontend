@@ -1,15 +1,31 @@
 <h3 class="text-center form-title" *ngIf="!hideTitle">Register</h3>
-<form #userForm="ngForm">
+<div *ngIf="success" class="container text-center">
+  <br> Registration complete!
+  <br>
+  <br> Please check your email to activate your account.
+  <br>
+  <br>
+</div>
+<form *ngIf="!success" #registrationForm="ngForm">
   <div class="form-group">
-    <label class="pull-left" for="enterUsername">Username:</label>
-    <input type="text" class="form-control" id="registrationUsername" aria-describedby="registrationUsername" placeholder="Enter a username"
-      [(ngModel)]="model.username" name="registrationUsername" #registrationUsername="ngModel" required>
-    <label class="pull-left" for="enterEmail">Email:</label>
-    <input type="text" class="form-control" id="email" aria-describedby="enterEmail" placeholder="Enter an email" [(ngModel)]="model.email"
+    <label class="pull-left" for="enterUsername">Username</label>
+    <input (blur)="checkUsername()" pattern="[a-zA-Z0-9]+" minlength="3" maxlength="20" type="text" class="form-control" id="registrationUsername"
+      aria-describedby="registrationUsername" placeholder="Enter a username" [(ngModel)]="model.username" name="registrationUsername"
+      #registrationUsername="ngModel" required [ngClass]="{'ng-invalid': !usernameIsAvailable, 'ng-valid': usernameIsAvailable}">
+    <small class="help-block text-center" *ngIf="usernameIsAvailable==true">
+      <span class="far fa-check-circle fa-fw"></span> This username is available!
+    </small>
+    <small class="help-block text-center" *ngIf="usernameIsAvailable==false">
+      <span class="far fa-times-circle fa-fw"></span> This username is not available!
+    </small>
+    <label class="pull-left" for="enterEmail">Email</label>
+    <input type="email" class="form-control" id="email" email aria-describedby="enterEmail" placeholder="Enter an email" [(ngModel)]="model.email"
       name="email" #email="ngModel" required>
-    <label class="pull-left" for="enterPassword">Password:</label>
-    <input type="password" class="form-control" id="registrationPassword" aria-describedby="registrationPassword" placeholder="Enter a password"
-      [(ngModel)]="model.password" name="registrationPassword" #registrationPassword="ngModel" required>
+    <app-new-password-form [password]="password" (isValid)="password = $event"></app-new-password-form>
+  </div>
+  <div class="form-group btn-group">
+    <recaptcha #recaptcha required aria-required="true" size="invisible" (resolved)="$event && submitUser($event)" siteKey="6LfC-kYUAAAAACj6JKNcWhXgqS-I-hTkEkx07AYx"></recaptcha>
+    <button type="button" class="btn btn-primary submit-button" [disabled]="!registrationForm.form.valid || !password"
+      (click)="recaptcha.execute()">Register</button>
   </div>
 </form>
-<button type="submit" class="btn btn-primary submit-button" [disabled]="!userForm.form.valid" (click)="submitUser()">Register</button>

@@ -1,0 +1,71 @@
+<div class="container outer">
+  <div class="visible" *ngIf="loading">
+    <app-loading></app-loading>
+  </div>
+  <div class="visible" *ngIf="!loading">
+    <!-- Start advanced search controls -->
+    <div class="row center-block">
+      <small>
+        <a class="point pull-right" id="toggle-advanced" data-toggle="collapse" data-target="#advanced-options">Advanced search options</a>
+      </small>
+      <div class="no-pad text-center" id="page-wrapper" *ngIf="page_range?.length > 1">
+        <div *ngFor="let page of page_range.reverse()" class="nav-page-wrapper pull-right">
+          <div class="spacer">&nbsp;&middot;&nbsp;</div>
+          <div class="noselect point ease-io-fast nav-page" routerLink="./" [queryParams]="{page: page}" queryParamsHandling="merge"
+            [ngClass]="{'selected' : page_number == page }">{{page}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="collapse" id="advanced-options">
+      <div class="form-group">
+        <label for="selectSearchType">Search for</label>
+        <select class="form-control" [(ngModel)]="query_type" name="selectSearchType">
+          <option value="all">All</option>
+          <option value="projects">Projects</option>
+          <option value="tasks">Tasks</option>
+          <option value="users">Users</option>
+        </select>
+      </div>
+      <div class="form-group btn-group">
+        <button type="button" class="btn btn-primary" routerLink="./" [queryParams]="{type: query_type}" queryParamsHandling="merge">Search</button>
+      </div>
+    </div>
+    <!-- End advanced search controls -->
+    <div class="container list-container no-pad" *ngIf="project_results?.length">
+      <div class="search-header row center-block">Project results
+        <small>
+          <a *ngIf="!query_type" class="pull-right" routerLink="./" [queryParams]="{type: 'projects'}" queryParamsHandling="merge">Search projects</a>
+        </small>
+      </div>
+      <app-project-list-entry class="entry" *ngFor="let project of project_results" [project]="project"></app-project-list-entry>
+    </div>
+    <div class="container list-container no-pad" *ngIf="task_results?.length">
+      <div class="search-header row center-block">Task results
+        <small>
+          <a *ngIf="!query_type" class="pull-right" routerLink="./" [queryParams]="{type: 'tasks'}" queryParamsHandling="merge">Search tasks</a>
+        </small>
+      </div>
+      <app-task-list-entry *ngFor="let task of task_results" [task]="task" [showSubmissionView]="false"></app-task-list-entry>
+    </div>
+    <div class="container list-container no-pad" *ngIf="user_results?.length">
+      <div class="search-header row center-block">User results
+        <small>
+          <a *ngIf="!query_type" class="pull-right" routerLink="./" [queryParams]="{type: 'users'}" queryParamsHandling="merge">Search users</a>
+        </small>
+      </div>
+      <app-user-list-entry *ngFor="let user of user_results" [user]="user"></app-user-list-entry>
+    </div>
+    <div class="container">
+      <div class="text-center" *ngIf="page_range?.length > 1">
+        <div *ngFor="let page of page_range.reverse()" class="nav-page-wrapper">
+          <a class="noselect point ease-io-fast nav-page" routerLink="./" [queryParams]="{page: page}" queryParamsHandling="merge"
+            [ngClass]="{'selected' : page_number == page }">{{page}}</a>
+          <div class="spacer">&nbsp;&middot;&nbsp;</div>
+        </div>
+      </div>
+    </div>
+    <div class="container text-center" *ngIf="query && !project_results?.length && !task_results?.length && !user_results?.length">
+      No results were found!
+    </div>
+  </div>
+</div>

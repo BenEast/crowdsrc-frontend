@@ -1,0 +1,6 @@
+#files-wrapper, #submission-form {
+    padding: 10px 0;
+}
+#files-wrapper {
+    color: var(--dark-accent-color);
+}

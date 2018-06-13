@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="form-group">
+    <div class="row form-group-head">
+      <h3>
+        <span class="far fa-list-ol" data-fa-transform="shrink-3 left-3"></span>Preferences
+        <span *ngIf="!editPreferences" (click)="editPreferences = !editPreferences" class="pull-right">
+          <span class="far fa-edit fa-sm point ease-io-fast"></span>
+        </span>
+        <span *ngIf="editPreferences" (click)="editPreferences = !editPreferences; preferences_form.submitPreferences()" class="pull-right">
+          <span class="fas fa-check fa-sm point ease-io-fast"></span>
+        </span>
+      </h3>
+      <small class="help-block head-help">Choose how other users can search for you</small>
+    </div>
+    <app-user-preferences-form [editPreferences]="editPreferences" [preferences]="preferences"></app-user-preferences-form>
+  </div>
+  <div class="form-group">
+    <div class="row form-group-head">
+      <h3>
+        <span class="fa-layers">
+          <span class="far fa-comment" data-fa-transform="shrink-3 left-3"></span>
+          <span class="fas fa-exclamation" data-fa-transform="shrink-8 left-1"></span>
+        </span>Notification Settings
+        <span *ngIf="!editNotifications" (click)="editNotifications = !editNotifications" class="pull-right">
+          <span class="far fa-edit fa-sm point ease-io-fast"></span>
+        </span>
+        <span *ngIf="editNotifications" (click)="editNotifications = !editNotifications; notifications_form.submitNotifications()"
+          class="pull-right">
+          <span class="fas fa-check fa-sm point ease-io-fast"></span>
+        </span>
+      </h3>
+      <small class="help-block head-help">Choose which notifications you receive</small>
+    </div>
+    <app-user-notifications-form [editNotifications]="editNotifications" [preferences]="preferences"></app-user-notifications-form>
+  </div>
+</div>

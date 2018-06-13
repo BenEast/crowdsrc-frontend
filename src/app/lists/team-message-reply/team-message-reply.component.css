@@ -1,0 +1,21 @@
+.message-reply {
+    display: inline-block;
+    border-left: 1px solid var(--mid-gray);
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-right: 0;
+    padding-left: 15px;
+}
+.message-username {
+    color: var(--main-color);
+    display: inline-block;
+}
+.fa-check {
+    color: var(--success-color);
+}
+.fa-ban, .fa-times {
+    color: var(--danger-color);
+}
+textarea {
+    font-size: inherit;
+}

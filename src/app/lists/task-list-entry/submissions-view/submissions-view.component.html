@@ -1,0 +1,48 @@
+<div class="submission-icon ease-io noselect" [ngClass]="{'point': submissions.length}" [attr.data-toggle]="submissions.length ? 'modal' : ''"
+  [attr.data-target]="submissions.length ? '#view-submissions-modal' + index : ''">
+  {{submissions.length}}
+  <span class="far fa-check-circle fa-fw"></span>&nbsp;
+</div>
+<!-- Start view submissions modal -->
+<div class="modal fade" role="document" tabindex="-1" id="view-submissions-modal{{index}}" *ngIf="submissions.length">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="close" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body" *ngIf="!acceptedSubmission">
+      <div class="container no-pad" *ngFor="let submission of submissions; let i = index">
+        <app-submission-list-entry [allowUpdate]="true" [submission]="submission" [taskId]="taskId"></app-submission-list-entry>
+        <div class="form-group">
+          <label class="form-check-label" for="accept-submission{{i}}">
+            <small>Accept this submission</small>
+          </label>
+          <span *ngIf="submission.is_accepted" (click)="toggleAccept(!submission.is_accepted, i)">
+            <span class="far fa-check-square fa-fw point ease-io-fast"></span>
+          </span>
+          <span *ngIf="!submission.is_accepted" (click)="toggleAccept(!submission.is_accepted, i)">
+            <span class="far fa-square fa-fw point ease-io-fast"></span>
+          </span>
+          <small class="help-block">This will mark the task as complete and close it for submissions.</small>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body" *ngIf="acceptedSubmission">
+      <div class="container no-pad">
+        <app-submission-list-entry [allowUpdate]="false" [submission]="acceptedSubmission" [taskId]="taskId"></app-submission-list-entry>
+        <div class="form-group">
+          <label class="form-check-label" for="accept-submission{{acceptedSubmission.id}}">
+            <small>Accept this submission</small>
+          </label>
+          <span id="accept-submission{{acceptedSubmission.id}}" (click)="toggleAccept(false)">
+            <span class="far fa-check-square fa-fw point ease-io-fast"></span>
+          </span>
+          <small class="help-block">This will mark the task as complete and close it for submissions.</small>
+        </div>
+        <div class="no-pad wide text-center">
+          <small *ngIf="submissions.length > 1" class="text-muted">and {{ submissions.length - 1 }} {{ (submissions.length - 1) == 1 ? 'other' : 'others'}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end view submissions modal -->

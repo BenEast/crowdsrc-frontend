@@ -1,26 +1,21 @@
-<div *ngIf="tasks.length">
-  <div class="task" *ngFor="let task of tasks">
-      <div class="row task-upper">
-          <h4 class="center-block">{{task.title}}
-              <p class="pull-right">{{task.status}}</p>
-              <!-- APP STATUS MODAL TAG 
-              -show users working on task
-              -completion meter???
-              -progress/uploads???
-
-              -show task communication? messages between members etc?
-
-              Display modal when they click the status
-
-              -Allow only task workers to add messages/update status/completion
-          -->
-          </h4>
-          <small class="text-muted pull-left">Last updated {{task.last_updated | date:'medium'}}</small>
-      </div>
-      <p class="pull-left col-xs-12">Suggested Skills: {{task.skills}}</p>
-      <p class="center-block col-xs-12">{{task.description}}</p>
-  </div>
+<div class="row" *ngIf="currentUser?.id == project.user.id">
+    <button type="button" data-toggle="modal" data-target="#submitTaskModal" class="col-xs-12 btn btn-secondary">Add a Task</button>
+    <div class="modal fade" id="submitTaskModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header no-bord">
+                    <button type="close" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <app-submit-task-form [project]="project" (taskSubmitted)="appendTask($event)"></app-submit-task-form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="text-center" *ngIf="!tasks.length">
-  <p>There are no available tasks at the moment!</p>
+<app-loading *ngIf="loadingData"></app-loading>
+<div *ngIf="!loadingData && project.tasks?.length">
+    <app-task-list-entry *ngFor="let task of project.tasks; let i = index" [task]="task" [index]="i" [allowEdit]="currentUser?.id == project.user.id"
+        [allowSubmissions]="true" [showSubmissionView]="currentUser?.id == project.user.id" (addedSkill)="addedSkill.emit($event)" (deletedTask)="onDeletedTask($event)" (removedSkill)="removedSkill.emit($event)"></app-task-list-entry>
 </div>
+<div *ngIf="!project.tasks?.length && !loadingData" class="text-center">There are no tasks available!</div>

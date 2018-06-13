@@ -1,0 +1,24 @@
+<div class="container outer">
+  <div class="visible top">
+    <app-loading *ngIf="!error && !resend_success"></app-loading>
+    <div class="row center-block content-wrapper text-center" *ngIf="error">
+      There was an error verifying your email.
+      <br>
+      <br>Click
+      <a class="point" (click)="resendVerification()">here</a> to send a new verification email.
+      <br>
+      <br> Questions or comments? Contact us
+      <a class="point" routerLink="/contact">here</a>.
+      <br>
+    </div>
+    <div class="row center-block content-wrapper text-center" *ngIf="resend_success">
+      A new verification link was sent to your email.
+      <br>
+      <br> Please follow the provided link to activate your Crowdsrc account.
+      <br>
+      <br> Questions or comments? Contact us
+      <a class="point" routerLink="/contact">here</a>.
+      <br>
+    </div>
+  </div>
+</div>

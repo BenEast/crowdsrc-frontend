@@ -1,0 +1,53 @@
+<div class="row center-block content-wrapper no-pad message">
+  <div class="col-xs-3 no-pad">
+    <div class="user-image-sm noselect" *ngIf="!message.user.image"></div>
+    <a class="user-image-sm point" *ngIf="message.user.image" [routerLink]="['/crowd/', message.user?.username]">
+      <img class="user-image-sm noselect" [src]="message.user.image">
+    </a>
+  </div>
+  <div class="col-xs-9 no-pad">
+    <a class="message-username point" [routerLink]="['/crowd/', message.user?.username]">{{message.user?.username}}</a>
+    <span *ngIf="!edit_status && currentUser?.id == message.user.id" (click)="edit_status = true" class="pull-right">
+      <span class="far fa-edit fa-fw ease-io point"></span>
+    </span>
+    <span *ngIf="edit_status && currentUser?.id == message.user?.id" (click)="updateTeamMessage()" class="pull-right">
+      <span class="fas fa-check fa-fw ease-io point"></span>
+    </span>
+    <span *ngIf="edit_status && currentUser?.id == message.user?.id" (click)="edit_body = message.body; edit_status = false"
+      class="pull-right">
+      <span class="fas fa-ban fa-fw ease-io point"></span>
+    </span>
+    <span data-toggle="modal" [attr.data-target]="'#deleteMessageModal' + index" *ngIf="edit_status && currentUser?.id == message.user.id"
+      class="pull-right">
+      <span class="fas fa-times fa-fw ease-io point pull-right"></span>
+    </span>
+  </div>
+  <div class="col-xs-9 no-pad">
+    <small class="text-muted">Last updated {{message.last_updated | date:'medium'}}</small>
+  </div>
+  <p *ngIf="!edit_status" class="message-body col-xs-12 no-pad preserve-formatting">{{message.body}}</p>
+  <textarea rows="3" *ngIf="edit_status" class="col-xs-12 form-control" placeholder="Enter a message..." aria-describedby="enterMessage"
+    [(ngModel)]="edit_body"></textarea>
+  <!-- Start message replies -->
+  <app-team-message-reply-component *ngFor="let reply of message.replies; let i = index" (deletedReply)="onReplyDelete($event)"
+    [reply]="reply" [index]="i" [messageId]="message.id"></app-team-message-reply-component>
+  <!-- End message replies -->
+  <!-- Start message reply form -->
+  <app-message-reply-form [messageId]="message.id" (addedReply)="onReplyCreate($event)"></app-message-reply-form>
+  <!-- End message reply form -->
+  <!-- Start delete message modal -->
+  <div class="modal fade" id="deleteMessageModal{{index}}" *ngIf="edit_status && currentUser?.id == message?.user?.id">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h4>Are you sure you want to delete this message? This cannot be undone.</h4>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-danger" (click)="deleteTeamMessage()" data-dismiss="modal">Delete Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End delete message modal -->
+</div>

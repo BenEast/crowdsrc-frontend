@@ -1,0 +1,28 @@
+<div class="row center-block">
+  <h4>Search by name
+    <app-toggle-slider class="pull-right" (toggle)="settings.allow_name_search = !settings.allow_name_search" [disabled]="!editSearch"
+      [value]="settings.allow_name_search"></app-toggle-slider>
+  </h4>
+  <small class="help-block">Let users search for you by first or last name.</small>
+</div>
+<div class="row center-block">
+  <h4>Search by location
+    <app-toggle-slider class="pull-right" (toggle)="settings.allow_loc_search = !settings.allow_loc_search" [disabled]="!editSearch"
+      [value]="settings.allow_loc_search"></app-toggle-slider>
+  </h4>
+  <small class="help-block">Let users search for you by location.</small>
+</div>
+<div class="row center-block">
+  <h4>Search by email
+    <app-toggle-slider class="pull-right" (toggle)="settings.allow_email_search = !settings.allow_email_search" [disabled]="!editSearch"
+      [value]="settings.allow_email_search"></app-toggle-slider>
+  </h4>
+  <small class="help-block">Let users search for you by email address.</small>
+</div>
+<div class="row center-block">
+  <h4>Search by username
+    <app-toggle-slider class="pull-right" (toggle)="settings.allow_username_search = !settings.allow_username_search" [disabled]="!editSearch"
+      [value]="settings.allow_username_search"></app-toggle-slider>
+  </h4>
+  <small class="help-block">Let users search for you by username.</small>
+</div>

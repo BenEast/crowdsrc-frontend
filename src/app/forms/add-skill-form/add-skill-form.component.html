@@ -1,0 +1,11 @@
+<div class="row no-pad wide">
+  <div class="col-xs-11 no-pad">
+    <input type="text" name="enterSkill" [(ngModel)]="skill_name" class="wide form-control" placeholder="Type a skill"
+      (keydown)="keyDownFunction($event)">
+  </div>
+  <div class="col-xs-1 no-pad">
+    <button type="button" class="btn btn-primary" (click)="submitSkill()">
+      <span class="far fa-plus fa-fw"></span>
+    </button>
+  </div>
+</div>

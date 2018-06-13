@@ -1,0 +1,14 @@
+<div class="row center-block content-wrapper">
+  <div class="container no-pad">
+    <div class="col upper">
+      <h4 class="point ease-io title">
+        <a [routerLink]="['/src/', project.id]" [queryParams]="{tab: 'project'}">{{project.title}}</a>
+      </h4>
+      <app-project-badge class="pull-right" [message_count]="project.message_count" [task_count]="project.task_count"></app-project-badge>
+    </div>
+    <div class="col">
+      <app-project-category *ngFor="let category of project.categories" [category]="category"></app-project-category>
+    </div>
+    <div class="description">{{project.description | capitalize}}</div>
+  </div>
+</div>

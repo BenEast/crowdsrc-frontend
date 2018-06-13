@@ -1,0 +1,29 @@
+<div class="row center-block content-wrapper message-reply">
+  <div class="col-xs-3 no-pad">
+    <div class="user-image-xs point noselect" *ngIf="!reply.user.image"></div>
+    <a class="user-image-xs point" [routerLink]="['/crowd/', reply.user.username]" *ngIf="reply.user.image">
+      <img class="user-image-xs noselect" [src]="reply.user.image">
+    </a>
+  </div>
+  <div class="col-xs-9 no-pad">
+    <a class="message-username point" [routerLink]="['/crowd/', reply.user.username]">{{reply.user.username}}</a>
+    <span *ngIf="!edit_status && currentUser?.id == reply.user?.id" (click)="edit_status = true" class="pull-right">
+      <span class="far fa-edit fa-fw ease-io point"></span>
+    </span>
+    <span *ngIf="edit_status && currentUser?.id == reply.user?.id" (click)="updateReply()" class="pull-right">
+      <span class="fas fa-check fa-fw ease-io point"></span>
+    </span>
+    <span *ngIf="edit_status && currentUser?.id == reply.user?.id" (click)="edit_body = reply.body; edit_status = false" class="pull-right">
+      <span class="fas fa-ban fa-fw ease-io point"></span>
+    </span>
+    <span *ngIf="edit_status && currentUser?.id == reply.user.id" (click)="deleteReply()" class="pull-right">
+      <span class="fas fa-times fa-fw ease-io point"></span>
+    </span>
+  </div>
+  <div class="col-xs-9 no-pad">
+    <small class="text-muted">Last updated {{reply.last_updated | date:'medium'}}</small>
+  </div>
+  <p *ngIf="!edit_status" class="message-body col-xs-12 no-pad preserve-formatting">{{reply.body}}</p>
+  <textarea *ngIf="edit_status && currentUser?.id == reply.user?.id" class="message-body col-xs-12 no-pad form-control" rows="2"
+    placeholder="Enter a reply" name="updateReply" [(ngModel)]="edit_body"></textarea>
+</div>

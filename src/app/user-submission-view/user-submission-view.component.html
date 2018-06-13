@@ -1,0 +1,13 @@
+<div class="container no-pad" *ngIf="submission">
+  <div class="row">
+    <small>
+      <a class="point pull-right" data-toggle="collapse" [attr.data-target]="'#submission-wrapper' + submission.id">
+        View your submission
+      </a>
+    </small>
+  </div>
+  <div class="collapse" id="submission-wrapper{{submission.id}}">
+    <app-submission-list-entry (deletedSubmission)="deletedSubmission.emit($event)" (updatedSubmission)="updatedSubmission.emit($event)"
+      [allowUpdate]="allowUpdate" [submission]="submission" [taskId]="taskId"></app-submission-list-entry>
+  </div>
+</div>

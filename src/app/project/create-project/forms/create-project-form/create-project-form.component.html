@@ -1,0 +1,35 @@
+<form>
+  <div class="form-group">
+    <label for="enterTitle">Title</label>
+    <input type="text" class="form-control" placeholder="Enter a title for the project" name="enterTitle" [(ngModel)]="model.title">
+  </div>
+  <div class="form-group">
+    <label for="enterCategories">Categories
+      <span data-toggle="collapse" data-target="#category-help">
+        <span class="far fa-question-circle point ease-io"></span>
+      </span>
+    </label>
+    <div class="collapse" id="category-help">
+      <small class="help-block">Categories will help users find your project.
+        <br>You can always add or remove categories from the project page.</small>
+    </div>
+    <input (keydown)="onKeyDown($event)" type="text" class="form-control" placeholder="Enter a category" name="enterCategories"
+      [(ngModel)]="category">
+    <small class="help-block">Press enter to add a category to the project.</small>
+    <div class="badge badge-default" *ngFor="let category of model.categories; let i = index">
+      <div>{{category.name}}</div>
+      <span (click)="removeCategory(i)">
+        <span class="fas fa-times point ease-io"></span>
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="enterDesc">Description</label>
+    <textarea rows="5" class="form-control" placeholder="Explain the background, goals, and purpose of the project" name="enterDesc"
+      [(ngModel)]="model.description"></textarea>
+    <small class="help-block">Try to be as descriptive as possible! This will help get users to contribute to open tasks on the project.</small>
+  </div>
+  <button type="button" class="btn btn-danger pull-right" (click)="resetModel()">
+    <span class="far fa-undo-alt"></span>
+  </button>
+</form>

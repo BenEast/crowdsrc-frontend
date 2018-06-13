@@ -1,0 +1,42 @@
+<div class="row center-block">
+  <h4>Crowd requests
+    <app-toggle-slider class="pull-right" (toggle)="preferences.notify_crowd_request_accept = !preferences.notify_crowd_request_accept"
+      [disabled]="!editNotifications" [value]="preferences.notify_crowd_request_accept"></app-toggle-slider>
+  </h4>
+  <small class="help-block">Get a notification when a user accepts your crowd request.</small>
+</div>
+<div class="row center-block">
+  <h4>Message replies
+    <app-toggle-slider class="pull-right" (toggle)="preferences.notify_message_replies = !preferences.notify_message_replies"
+      [disabled]="!editNotifications" [value]="preferences.notify_message_replies"></app-toggle-slider>
+  </h4>
+  <small class="help-block">Get a notification when a user replies to your message on a project.</small>
+</div>
+<div class="row center-block">
+  <h4>Project messages
+    <app-toggle-slider class="pull-right" (toggle)="preferences.notify_project_messages = !preferences.notify_project_messages"
+      [disabled]="!editNotifications" [value]="preferences.notify_project_messages"></app-toggle-slider>
+  </h4>
+  <small class="help-block">Get a notification when a user writes a message on one of your projects.</small>
+</div>
+<div class="row center-block">
+  <h4>Project submissions
+    <app-toggle-slider class="pull-right" (toggle)="preferences.notify_project_submissions = !preferences.notify_project_submissions"
+      [disabled]="!editNotifications" [value]="preferences.notify_project_submissions"></app-toggle-slider>
+  </h4>
+  <small class="help-block">Get a notification when a user makes a submission for a task on one of your projects.</small>
+</div>
+<div class="row center-block">
+  <h4>Saved task status
+    <app-toggle-slider class="pull-right" (toggle)="preferences.notify_saved_task_status = !preferences.notify_saved_task_status"
+      [disabled]="!editNotifications" [value]="preferences.notify_saved_task_status"></app-toggle-slider>
+  </h4>
+  <small class="help-block">Get a notification when a task that you have saved is updated.</small>
+</div>
+<div class="row center-block no-bord">
+  <h4>Submission status
+    <app-toggle-slider class="pull-right" (toggle)="preferences.notify_submission_status = !preferences.notify_submission_status"
+      [disabled]="!editNotifications" [value]="preferences.notify_submission_status"></app-toggle-slider>
+  </h4>
+  <small class="help-block">Get a notification when your submission is accepted or removed as the solution for a task.</small>
+</div>

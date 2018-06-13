@@ -1,19 +1,10 @@
-.project-header {
-    padding: 80px 10px 10px 10px;
-}
-.section-wrapper {
-    width: 95%;
-    margin: auto;
-}
-
-.user-body {
-    align-items: stretch;
-    min-width: 150px;
-}
 .username {
     color: var(--main-color);
+    display: inline-block;
 }
-
+.modal-body {
+    padding-bottom: 50px;
+}
 .nav-tabs {
     margin: -10px -10px 0 -10px;
 }
@@ -23,15 +14,90 @@
     font-size: 1em;
     color: var(--main-color);
     text-decoration: none;
-    transition-duration: 0.3s !important;
-    -moz-transition-duration: 0.3s !important;
-    -webkit-transition-duration: 0.3s !important;
 }
 .nav-link:hover {
     color: var(--dark-accent-color);
 }
-.badge {
+li.badge {
     margin: 23px 20px auto auto;
-	background-color: var(--mid-gray);
+	background: var(--mid-gray);
     color: var(--main-color);
+}
+.private-tab {
+    margin: 20px auto 20px auto;
+}
+
+.skill-badge {
+    margin-right: 10px;
+    background: var(--success-color);
+}
+.skill-badge:last-child {
+    margin-right: auto;
+}
+.fa-star {
+    color: gold;
+}
+.fa-check {
+    color: var(--success-color);
+}
+.fa-ban {
+    color: var(--danger-color);
+}
+h2, #title-input {
+    font-size: 2em;
+    color: var(--dark-color);
+    border-radius: 50px;
+}
+.form-control {
+    border-radius: 50px;
+}
+#badge-wrapper {
+    margin-top: 20px;
+    margin-right: 15px;
+}
+.tab>a {
+    margin-right: 0 !important;
+}
+.active>a {
+    background: var(--mid-gray) !important;
+    color: var(--dark-accent-color) !important;
+}
+
+@media (min-width: 768px) {
+    .tab:first-child .nav-link {
+        border-top-left-radius: 7px;
+    }
+}
+@media (max-width: 767px) {
+    .tab {
+        width: 25%;
+
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+
+        border-left: 1px solid var(--light-gray);
+        border-right: 1px solid var(--light-gray);
+    }
+    .content-wrapper {
+        width: 100%;
+    }
+    .nav-tabs {
+        border-top: none;
+    }
+}
+@media (max-width: 425px) {
+    #badge-wrapper {
+        margin-right: 10px;
+    }
+}
+@media (max-width: 380px) {
+    #badge-wrapper {
+        margin-right: 5px;
+    }
+}
+@media (max-width: 340px) {
+    #badge-wrapper {
+        margin-right: 2px;
+    }
 }

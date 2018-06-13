@@ -1,0 +1,10 @@
+.help-block {
+    font-size: 14px;
+}
+.row {
+    border-bottom: 1px solid var(--light-gray);
+    margin-bottom: 10px;
+}
+h4 {
+    margin: 0 auto;
+}

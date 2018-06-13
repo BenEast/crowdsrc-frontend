@@ -1,0 +1,29 @@
+.form-group-head {
+    margin: 0 auto;
+    padding-top: 10px;
+}
+h3 {
+    border-bottom: 2px solid var(--mid-gray);
+}
+h3, h4, .head-help {
+    margin: 0 auto;
+}
+.row {
+    border-bottom: 1px solid var(--light-gray);
+    margin-bottom: 10px;
+}
+.help-block {
+    font-size: 14px;
+}
+.head-help {
+    font-size: 15px;
+}
+.form-group {
+    margin-bottom: 0;
+}
+a, a:hover {
+    color: inherit;
+}
+#current-email-form, .row>small {
+    margin-bottom: 10px;
+}

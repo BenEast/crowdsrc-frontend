@@ -1,0 +1,9 @@
+<div class="row center-block no-bord">
+  <h4>Preferred skills</h4>
+  <small class="help-block">Choose which skills to receive task and review suggestions for.</small>
+  <div class="row center-block skill" *ngFor="let skill of preferences.skill_preferences">
+    <span>{{skill}}</span>
+    <small class="text-muted">Rating: {{skill.rating}}</small>
+    <app-toggle-slider class="pull-right" (toggle)="skill.preferred = !skill.preferred" [disabled]="!editPreferences" [value]="skill.preferred"></app-toggle-slider>
+  </div>
+</div>

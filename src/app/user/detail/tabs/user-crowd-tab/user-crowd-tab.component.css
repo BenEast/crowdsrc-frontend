@@ -1,0 +1,25 @@
+.row {
+    border-bottom: 1px solid var(--mid-gray);
+}
+.crowd-user, .received {
+    margin: 10px 5px;
+}
+.received {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: inline-block;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+}
+.unseen {
+    border-color: var(--light-accent-color);
+}
+.reject {
+    color: var(--danger-color);
+}
+.accept {
+    color: var(--success-color);
+}
+.text-center {
+    padding-bottom: 20px;
+}

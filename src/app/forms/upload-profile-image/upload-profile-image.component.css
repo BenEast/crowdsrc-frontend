@@ -1,0 +1,9 @@
+.container {
+    padding: 10px;
+}
+.crop {
+    max-width: 100%;
+}
+#crop-control {
+    margin-top: 10px;
+}

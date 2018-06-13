@@ -1,0 +1,40 @@
+<div class="row center-block">
+  <h4 class="view-head">View age
+    <small *ngIf="!editViewing" class="pull-right text-muted">{{levelNames[levels.indexOf(settings.view_age_level)]}}</small>
+    <app-select-input *ngIf="editViewing" class="pull-right" (change)="settings.view_age_level = onChange($event)" [model]="settings.view_age_level"
+      [optionValues]="levels" [optionNames]="levelNames"></app-select-input>
+  </h4>
+  <small class="help-block">Choose who can view your age and birthday.</small>
+</div>
+<div class="row center-block">
+  <h4 class="view-head">View email
+    <small *ngIf="!editViewing" class="pull-right text-muted">{{levelNames[levels.indexOf(settings.view_email_level)]}}</small>
+    <app-select-input *ngIf="editViewing" class="pull-right" (change)="settings.view_email_level = onChange($event)" [model]="settings.view_email_level"
+      [optionValues]="levels" [optionNames]="levelNames"></app-select-input>
+  </h4>
+  <small class="help-block">Choose who can view your email.</small>
+</div>
+<div class="row center-block">
+  <h4 class="view-head">View activity
+    <small *ngIf="!editViewing" class="pull-right text-muted">{{levelNames[levels.indexOf(settings.view_activity_level)]}}</small>
+    <app-select-input *ngIf="editViewing" class="pull-right" (change)="settings.view_activity_level = onChange($event)" [model]="settings.view_activity_level"
+      [optionValues]="levels" [optionNames]="levelNames"></app-select-input>
+  </h4>
+  <small class="help-block">Choose who can view your recent account activity.</small>
+</div>
+<div class="row center-block">
+  <h4 class="view-head">View crowd
+    <small *ngIf="!editViewing" class="pull-right text-muted">{{levelNames[levels.indexOf(settings.view_crowd_level)]}}</small>
+    <app-select-input *ngIf="editViewing" class="pull-right" (change)="settings.view_crowd_level = onChange($event)" [model]="settings.view_crowd_level"
+      [optionValues]="levels" [optionNames]="levelNames"></app-select-input>
+  </h4>
+  <small class="help-block">Choose who can view your crowd.</small>
+</div>
+<div class="row center-block">
+  <h4 class="view-head">View stats
+    <small *ngIf="!editViewing" class="pull-right text-muted">{{levelNames[levels.indexOf(settings.view_stats_level)]}}</small>
+    <app-select-input *ngIf="editViewing" class="pull-right" (change)="settings.view_stats_level = onChange($event)" [model]="settings.view_stats_level"
+      [optionValues]="levels" [optionNames]="levelNames"></app-select-input>
+  </h4>
+  <small class="help-block">Choose who can view your account stats.</small>
+</div>

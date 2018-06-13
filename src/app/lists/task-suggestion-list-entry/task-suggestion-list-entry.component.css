@@ -1,0 +1,20 @@
+.container {
+    position: relative;
+}
+.close {
+    position: absolute;
+    top: -25px;
+    right: 0;
+}
+#status {
+    color: var(--main-color);
+}
+.ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+#skill-wrapper {
+    overflow: hidden;
+    height: 24px;
+}

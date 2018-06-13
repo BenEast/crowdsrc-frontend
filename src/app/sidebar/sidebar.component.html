@@ -1,32 +1,59 @@
-<div class="visible sidebar col-sm-3 col-sm-push-1 col-md-push-0 col-lg-2 col-lg-push-1">
-  <div class="inner-wrapper" *ngIf="isAuthenticated && currentUser">
-    <div class="row center-block user-info">
-      <!-- Display user image in circle -->
-      <div class="center-block image-wrapper" (click)="routeTo('/profiles/'+currentUser.id)">
-        image
+<div class="visible">
+  <div class="inner-wrapper container" *ngIf="loadingUser">
+    <app-loading class="center-block"></app-loading>
+  </div>
+  <div class="inner-wrapper container" *ngIf="!loadingUser && currentUser">
+    <div class="row center-block">
+      <div class="center-block user-image-lg no-pad" *ngIf="!currentUser.image">
+        <div class="user-image-lg"></div>
       </div>
-      <h4 class="text-center username" (click)="routeTo('/profiles/'+currentUser.id)">{{currentUser.username}}</h4>
+      <a class="center-block user-image-lg point no-pad" [routerLink]="['/crowd', currentUser.username]" [queryParams]="{tab: 'details'}"
+        *ngIf="currentUser.image">
+        <img class="user-image-lg" alt="Current user profile picture" [src]="currentUser.image">
+      </a>
+      <h4 class="text-center point">
+        <a [routerLink]="['/crowd', currentUser.username]" [queryParams]="{tab: 'details'}">{{currentUser.username}}</a>
+      </h4>
     </div>
+    <hr>
+    <!-- Start user suggestions -->
+    <div id="suggestion-wrapper" class="row center-block content-wrapper">
+      <div class="no-pad" *ngIf="taskSuggestions?.length">
+        <h4 id="suggest-task-title">Suggested task</h4>
+        <app-task-suggestion-list-entry class="no-pad" [taskSuggestion]="taskSuggestions[0]"></app-task-suggestion-list-entry>
+      </div>
+      <div *ngIf="!taskSuggestions?.length" class="text-center">You have no task suggestions.</div>
+    </div>
+    <!-- End user suggestions -->
+    <hr>
     <div class="row center-block content-wrapper">
-      <div class="text-center col side-list" (click)="routeTo('/profiles/'+currentUser.id)">Your Profile</div>
-      <div class="text-center col side-list" (click)="logout()">Logout</div>
-      <div class="center-block col spacer"></div>
-      <div class="text-center col side-list" (click)="routeTo('/about')">About Crowdsrc</div>
-      <div class="text-center col side-list" (click)="routeTo('/contact')">Contact Us</div>
+      <!-- Sidebar links -->
+      <!-- <a class="center-block point nav-item" [routerLink]="['/crowd', currentUser.username]" [queryParams]="{tab: 'details'}">
+        <span class="fas fa-user-circle fa-lg fa-fw"></span> Your Profile
+      </a> -->
+      <a class="center-block point nav-item" routerLink="/src/create">
+        <span class="fas fa-plus-square fa-lg fa-fw"></span> New project
+      </a>
+      <a class="center-block point nav-item" routerLink="/settings">
+        <span class="fas fa-cog fa-lg fa-fw"></span> Settings
+      </a>
+      <a class="center-block point nav-item" (click)="logout()">
+        <span class="fas fa-sign-out-alt fa-lg fa-fw"></span> Logout
+      </a>
     </div>
   </div>
-  <div class="inner-wrapper" *ngIf="!isAuthenticated || !currentUser">
+  <div class="inner-wrapper container" *ngIf="!loadingUser && !currentUser">
     <!-- Login Form -->
-    <div class="center-block login" *ngIf="!showRegistrationForm">
+    <div class="center-block" *ngIf="!showRegistrationForm">
       <app-login-form></app-login-form>
       <p class="text-center">or</p>
-      <p class="text-center form-toggle" (click)="showRegistrationForm = !showRegistrationForm">Sign Up</p>
+      <p class="text-center form-toggle point ease-io" (click)="showRegistrationForm = !showRegistrationForm">Sign Up</p>
     </div>
     <!-- Registration Form -->
-    <div class="center-block register" *ngIf="showRegistrationForm">
+    <div class="center-block registration" *ngIf="showRegistrationForm">
       <app-registration-form></app-registration-form>
       <p class="text-center">or</p>
-      <p class="text-center form-toggle" (click)="showRegistrationForm = !showRegistrationForm">Login</p>
+      <p class="text-center form-toggle point ease-io" (click)="showRegistrationForm = !showRegistrationForm">Login</p>
     </div>
   </div>
 </div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="form-group">
+    <label for="#rating-input">How well does this submission complete the task?</label>
+    <input id="rating-input" type="range" min="0" max="10" name="enterRating" [(ngModel)]="rating" class="range-input wide">
+    <div class="text-center text-muted">
+      <small class="pull-left">Not at all</small>
+      <div class="middle no-pad">
+        <small>Somewhat</small>
+      </div>
+      <small class="pull-right">Nailed it!</small>
+    </div>
+  </div>
+  <div class="form-group" *ngFor="let skill of taskSkills; let i = index">
+    <label for="#skill-input{{i}}">How would you rate the user's skill in {{skill.name | capitalize}}?</label>
+    <input id="skill-input{[i}}" type="range" min="0" max="10" name="enterSkillRating{{i}}" [(ngModel)]="skillRatings[i]" class="range-input wide">
+    <div class="text-center text-muted">
+      <small class="pull-left">Very low</small>
+      <div class="middle no-pad">
+        <small>Average</small>
+      </div>
+      <small class="pull-right">Very high</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="button" class="btn btn-primary pull-right" (click)="submitReview()">Submit review</button>
+  </div>
+</div>

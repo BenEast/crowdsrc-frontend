@@ -1,0 +1,29 @@
+.container {
+    height: 100px;
+}
+.title {
+    display: inline-block;
+    color: var(--main-color);
+    margin: 0;
+}
+.title:hover {
+    text-decoration: underline;
+}
+.col {
+    margin-top: 5px;
+    max-width: 100%;
+    height: 1.5em;
+    overflow: hidden;
+}
+.row {
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--mid-gray);
+    padding-bottom: 20px;
+}
+.upper {
+    border-bottom: 1px solid var(--light-gray);
+    border-bottom-right-radius: 10px;
+}
+a, a:hover {
+    color: inherit;
+}

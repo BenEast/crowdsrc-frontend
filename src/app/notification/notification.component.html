@@ -1,0 +1,25 @@
+<div class="container outer">
+  <app-loading *ngIf="!notifications.length"></app-loading>
+  <div *ngIf="notifications.length">
+    <a class="point visible notification ease-io dull" *ngFor="let notification of notifications; let i = index" [ngClass]="{'new': notification.is_new}"
+      (mousedown)="onMousedown($event, notification)" [routerLink]="notification.relative_url" [queryParams]="notification.query_params">
+      <div class="row center-block">
+        <div class="col-xs-3" *ngIf="notification.user">
+          <div *ngIf="!notification.user.image" class="user-image-md"></div>
+          <img *ngIf="notification.user.image" class="user-image-md" [src]="notification.user.image">
+        </div>
+        <div [ngClass]="{'col-xs-9 pull-right': notification.user, 'col-xs-12': !notification.user}">
+          <a *ngIf="notification.user">{{notification.user.username}}</a> {{notification.message}}
+          <br>
+          <small class="text-muted">{{notification.datetime | date: 'medium'}}</small>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="notification text-center">
+    <small class="text-muted">You've reached the end of your notifications!
+      <br> Check your
+      <a [routerLink]="'/settings'" [queryParams]="{tab: 'preferences'}">notification settings</a>.
+    </small>
+  </div>
+</div>

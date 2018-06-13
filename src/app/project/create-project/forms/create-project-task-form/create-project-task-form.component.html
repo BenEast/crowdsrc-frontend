@@ -1,0 +1,45 @@
+<form>
+  <div class="form-group">
+    <label for="enterTitle">Title</label>
+    <input type="text" class="form-control" name="enterTitle" [(ngModel)]="title" placeholder="Enter a title for the task">
+    <small class="help-block">Try to describe the main goal of the task in the title.</small>
+  </div>
+  <div class="form-group">
+    <label for="enterSkills">Skills
+      <span data-toggle="collapse" data-target="#skill-help">
+        <span class="far fa-question-circle point ease-io"></span>
+      </span>
+    </label>
+    <div class="collapse" id="skill-help">
+      <small class="help-block">Skills are used to match users with tasks.
+        <br>You can add or delete skills on any task that is not complete.</small>
+    </div>
+    <input (keydown)="onKeyDown($event)" type="text" class="form-control" placeholder="Enter a skill" name="enterSkills" [(ngModel)]="skill">
+    <small class="help-block">Press enter to add a skill to the task.</small>
+    <div class="badge badge-default" *ngFor="let skill of skills; let i = index">
+      <div>{{skill}}</div>
+      <span (click)="removeSkill(i)">
+        <span class="fas fa-times point ease-io"></span>
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="enterDesc">Description</label>
+    <textarea rows="3" class="form-control" name="enterDesc" [(ngModel)]="description" placeholder="Describe the task in detail"></textarea>
+    <small class="help-block">Provide as much information as you can! Users will base their submissions off of the information provided here.</small>
+  </div>
+  <div class="form-group">
+    <div class="container no-pad">
+      <button type="button" class="btn btn-primary pull-right" (click)="saveTask()">
+        <span class="fas fa-plus"></span>
+      </button>
+      <button type="button" class="btn btn-danger pull-right" (click)="reset()">
+        <span class="far fa-undo-alt"></span>
+      </button>
+    </div>
+  </div>
+</form>
+<div class="task-wrapper container no-pad" *ngFor="let task of model.tasks; let i = index">
+  <button type="close" class="close" (click)="removeTask(i)">&times;</button>
+  <app-task-list-entry [task]="task" [index]="index" [showSaveButton]="false"></app-task-list-entry>
+</div>

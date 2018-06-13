@@ -1,0 +1,29 @@
+.dull, .dull:hover {
+    color: inherit;
+}
+.new {
+    box-shadow: 0 2px 5px 0 var(--dark-gray),
+                inset 0 0 10px 0 var(--light-accent-color);
+    border: 2px solid var(--light-accent-color);
+}
+.notification {
+    padding: 15px;
+}
+.notification:first-child {
+    margin-top: 50px;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+.col-xs-3 {
+    width: 100px;
+    padding: 0;
+}
+.col-xs-9 {
+    margin-top: 20px;
+    width: calc(100% - 100px);
+}
+@media (max-width: 384px) {
+    .col-xs-9 {
+        margin-top: 10px;
+    }
+}

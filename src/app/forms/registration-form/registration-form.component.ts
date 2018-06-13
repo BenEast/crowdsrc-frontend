@@ -1,38 +1,54 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { AbstractControl, ValidatorFn, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Router } from '@angular/router';
-import { SharedService } from '../../services/shared.service';
 import { User } from '../../models/user';
+import { RecaptchaComponent } from 'ng2-recaptcha';
+import { faCheckCircle, faTimesCircle } from '@fortawesome/fontawesome-pro-regular';
+import fontawesome from '@fortawesome/fontawesome';
+
+fontawesome.library.add(faCheckCircle);
+fontawesome.library.add(faTimesCircle);
 
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
-  styleUrls: ['../forms.css']
+  styleUrls: ['./registration-form.component.css']
 })
 export class RegistrationFormComponent implements OnInit {
-  @Input() hideTitle: boolean = false;
-  private model = new User(1, "", "", "", "", "", "", "", [], "", "", "", "");
+  @Input() hideTitle = false;
 
-  constructor(private _authService: AuthenticationService, private _router: Router, private _sharedService: SharedService) { }
+  private model = new User(1, '', false);
+  private usernameIsAvailable: boolean;
+  private password = '';
+  private success = false;
+
+  @ViewChild(RecaptchaComponent) recaptcha: RecaptchaComponent;
+
+  constructor(private _authService: AuthenticationService) { }
   ngOnInit() { }
 
-  private submitUser() {
-    let user_json = JSON.parse(JSON.stringify(this.model));
-    user_json.first_name = "";
-    user_json.last_name = "";
+  private checkUsername() {
+    if (!this.model.username) {
+      this.usernameIsAvailable = undefined;
+      return;
+    }
 
-    this._sharedService.postUser(user_json).subscribe(
-      success => {
-        this._authService.submitCredentials(user_json);
+    this._authService.isUsernameAvailable(this.model.username).subscribe(
+      result => this.usernameIsAvailable = result);
+  }
 
-        if (this._authService.userIsAuthenticated()) {
-          window.location.reload();
-        }
-      },
-      error => {
-        console.log("Error with user registration.");
-        console.log(error.body);
-      }
-    );
+  private submitUser(recaptcha_response: string) {
+    const registration_json = JSON.stringify({
+      username: this.model.username,
+      email: this.model.email,
+      password: this.password,
+      recaptcha_response: recaptcha_response,
+    });
+
+    this._authService.registerUser(registration_json).subscribe(
+      success => this.success = true,
+      error => this.success = false);
+
+    this.recaptcha.reset();
   }
 }

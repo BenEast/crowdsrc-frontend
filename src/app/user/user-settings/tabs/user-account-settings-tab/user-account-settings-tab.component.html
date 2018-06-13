@@ -1,0 +1,45 @@
+<div class="container">
+  <!-- Start update password section -->
+  <div class="form-group">
+    <div class="row form-group-head">
+      <h3>
+        <span class="far fa-key fa-fw" data-fa-transform="shrink-3 left-3"></span>Change password
+      </h3>
+      <small class="help-block head-help">Update your password to secure your account
+        <a class="pull-right point" (click)="password_form.toggleEditPassword()">Change password</a>
+      </small>
+    </div>
+    <div class="row center-block" id="change-password">
+      <app-change-password-form></app-change-password-form>
+    </div>
+  </div>
+  <div class="form-group">
+    <!-- End update password section -->
+    <!-- Start update email section -->
+    <div class="row form-group-head">
+      <h3>
+        <span class="far fa-at fa-fw" data-fa-transform="shrink-3 left-3"></span>Change email
+      </h3>
+      <small class="help-block head-help">Update the email address for your account
+        <a class="pull-right point" (click)="email_form.toggleEditEmail()">Change email</a>
+      </small>
+    </div>
+    <div class="row center-block" [ngClass]="{'no-bord': !email_form.editEmail}">
+      <app-change-email-form></app-change-email-form>
+    </div>
+  </div>
+  <!-- End update email section -->
+  <!-- Start delete account section -->
+  <div class="form-group">
+    <div class="row form-group-head">
+      <h3>
+        <span class="far fa-trash-alt fa-fw" data-fa-transform="shrink-3 left-3"></span>Delete account
+      </h3>
+      <small class="help-block head-help">Delete your Crowdsrc account.</small>
+    </div>
+    <div class="row center-block no-bord">
+      <app-delete-account-form></app-delete-account-form>
+    </div>
+  </div>
+  <!-- End delete account section -->
+</div>

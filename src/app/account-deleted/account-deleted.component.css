@@ -1,0 +1,9 @@
+h3 {
+    color: var(--dark-accent-color);
+}
+.text-center {
+    margin-bottom: 20px;
+}
+a:hover {
+    color: var(--light-accent-color);
+}

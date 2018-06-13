@@ -1,0 +1,19 @@
+.content-section {
+    border-top: 1px solid var(--mid-gray);
+}
+.content-section:first-child {
+    border-top: none;
+    margin-top: -15px;
+}
+.content-header {
+    padding: 5px auto;
+    margin-bottom: 10px;
+}
+.user-image {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+a {
+    color: var(--main-color);
+}

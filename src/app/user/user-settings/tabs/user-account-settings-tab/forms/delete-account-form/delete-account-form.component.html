@@ -1,0 +1,24 @@
+<div id="delete-account-group">
+  <div id="delete-error-dialog" class="hidden text-center">
+    <small>There was an error deleting your account. Please verify that your password was entered correctly.</small>
+  </div>
+  <button id="delete-primary" class="btn btn-danger center-block" (click)="toggleConfirmDelete(!showConfirmDelete)">Delete my account</button>
+  <div class="hidden row center-block" id="delete-confirm-wrapper" *ngIf="showConfirmDelete">
+    <div class="form-group text-center">Are you sure?
+      <br>We would hate to see you go!
+    </div>
+    <div class="form-group">
+      <label for="enterCurrentPassword">Password</label>
+      <input type="password" class="form-control" [(ngModel)]="password" name="enterCurrentPassword" placeholder="Enter your current password">
+      <small class="help-block">Enter your current password to confirm account deletion.</small>
+    </div>
+    <div class="form-group">
+      <label for="enterDeleteFeedback">Tell us why you're leaving</label>
+      <textarea rows="4" class="form-control" placeholder="Tell us why you're leaving (optional)" [(ngModel)]="feedback" name="enterDeleteFeedback"></textarea>
+    </div>
+    <div class="form-group text-center">
+      <button class="btn btn-success" (click)="toggleConfirmDelete(false)">No, keep my account</button>
+      <button class="btn btn-danger" (click)="removeUser()">Yes, delete my account</button>
+    </div>
+  </div>
+</div>

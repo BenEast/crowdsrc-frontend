@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="form-group crop" *ngIf="image">
+    <angular-cropper #angularCropper [cropperOptions]="cropperOptions" [imageUrl]="image"></angular-cropper>
+    <div class="row center-block content-wrapper text-center" id="crop-control">
+      <span class="point" (click)="angularCropper.cropper.rotate(-90)">
+        <span class="far fa-undo-alt fa-fw"></span>
+      </span>
+      <span class="point" (click)="angularCropper.cropper.rotate(90)">
+        <span class="far fa-redo-alt fa-fw"></span>
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="text-center">
+      <div class="row">
+        <label class="btn btn-primary">
+          <span class="far fa-upload fa-fw"></span>Upload
+          <input id="add-image" type="file" class="hidden" (change)="onFileChange($event)" accept="image/*">
+        </label>
+        <button *ngIf="image" type="submit" class="btn btn-primary" data-dismiss="modal" (click)="saveImage()">
+          <span class="far fa-save fa-fw"></span>Save
+        </button>
+      </div>
+      <small class="help-block">Max file size 5 MB</small>
+    </div>
+  </div>
+</div>

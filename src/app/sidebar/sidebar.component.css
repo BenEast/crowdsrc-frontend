@@ -1,55 +1,29 @@
-.sidebar {
-    position: fixed;
+.visible {
     z-index: 999;
-    
-    min-width: 205px;
-    max-width: 250px;
-	min-height: 400px;
-    margin-top: 141px;
-}
-.col-md-push-0 {
-    margin-left: 5%;
+    width: 240px;
 }
 .inner-wrapper {
-	padding: 10px;
-	height: 100%;
-	width: 100%;
+    padding: 20px 0 0 0;
 }
-.user-info {
-	height: 45%;
-	width: 90%;
-    margin-bottom: 20px;
-}
-.username {
-    width: 100%;
-    text-decoration: none;
-    color: var(--main-color);
-}
-.image-wrapper {
+h4 {
     margin-top: 10px;
-    height: 120px;
-    width: 120px;
-    border: 1px solid var(--dark-color);
-} 
-.spacer{
-    margin-top: 15%;
-    height: 20px;
-    width: 90%;
 }
-.side-list {
-    width: 90%;
-    margin: auto;
-    padding: 5px;
+.nav-item {
+    color: inherit;
+    text-align: center;
+    margin-top: 10px;
 }
-.side-list:hover {
-    color: var(--main-color);
-}
-
-.form-toggle {
-    transition-duration: 0.25s !important;
-    -moz-transition-duration: 0.25s !important;
-    -webkit-transition-duration: 0.25s !important;
-}
-.form-toggle:hover {
+.form-toggle:hover, .nav-item:hover, h4>a {
     color: var(--main-color) !important;
+}
+a:hover, a:focus, a:active {
+    text-decoration: none;
+}
+hr {
+    width: 100%;
+    margin: 0 auto;
+}
+#suggest-task-title {
+    display: inline;
+    color: var(--dark-accent-color);
 }
